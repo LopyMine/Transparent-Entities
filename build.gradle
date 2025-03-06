@@ -1,0 +1,19 @@
+plugins {
+	id("net.lopymine.mossy-plugin")
+}
+
+mossyDependencies {
+	minecraft = stonecutter.current.version.toString()
+	mappings = prop("build.yarn")
+	lombok = prop("base.lombok_version")
+	fabricApi = prop("build.fabric_api")
+	fabricLoader = prop("build.fabric_loader")
+}
+
+mossyResources {
+	//expandFiles = ["custom", "file", "patterns", "here"]
+}
+
+String prop(String key) {
+	return findProperty(key).toString()
+}
