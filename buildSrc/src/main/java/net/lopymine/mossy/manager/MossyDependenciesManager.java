@@ -1,5 +1,6 @@
 package net.lopymine.mossy.manager;
 
+import dev.kikugie.stonecutter.StonecutterBuild;
 import lombok.experimental.ExtensionMethod;
 import org.gradle.api.*;
 import org.gradle.api.artifacts.dsl.DependencyHandler;

@@ -1,0 +1,14 @@
+{
+	"required": true,
+	"package": "net.lopymine.ms.compat.sodium.mixin",
+	"refmap": "${mod_id}.refmap.json",
+	"plugin": "net.lopymine.ms.compat.sodium.SodiumCompatPlugin",
+	"compatibilityLevel": "JAVA_${java}",
+	"mixins": [],
+	"client": [
+		"ItemRendererMixinMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}

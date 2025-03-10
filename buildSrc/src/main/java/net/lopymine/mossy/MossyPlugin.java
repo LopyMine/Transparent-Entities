@@ -38,6 +38,7 @@ public class MossyPlugin implements Plugin<Project> {
 		PluginContainer plugins = project.getPlugins();
 		plugins.apply("fabric-loom");
 		plugins.apply("me.modmuss50.mod-publish-plugin");
+		plugins.apply("dev.kikugie.j52j");
 
 		//
 
@@ -50,6 +51,7 @@ public class MossyPlugin implements Plugin<Project> {
 		MossyPlugin.configureProject(project, this);
 
 		MossyJavaManager.apply(project,this);
+		MossyJ52JManager.apply(project);
 		MossyProcessResourcesManager.apply(project, this);
 
 		MossyDependenciesManager.apply(project);
@@ -81,13 +83,14 @@ public class MossyPlugin implements Plugin<Project> {
 		project.getTasks().register("generatePersonalProperties", GeneratePersonalPropertiesTask.class, (task) -> {
 			task.setGroup("mossy");
 		});
-		project.getTasks().register("regenerateRunConfigurations", RegenerateRunConfigsTask.class, (task) -> {
+		project.getTasks().register("regenerateRunConfigurations", Delete.class, (task) -> {
 			task.setGroup("mossy");
+			task.delete(getRootFile(project, "/.idea/runConfigurations/"));
 			task.finalizedBy("ideaSyncTask");
 		});
 		project.getTasks().register("rebuildLibs", Delete.class, task -> {
 			task.setGroup("build");
-			String modName = getProperty(project, "data.mod_name");
+			String modName = getProperty(project, "data.mod_name").replace(" ", "");
 			String version = project.getVersion().toString();
 
 			String jarFileName = "libs/%s-%s.jar".formatted(modName, version);
@@ -115,7 +118,7 @@ public class MossyPlugin implements Plugin<Project> {
 		project.setGroup(mavenGroup);
 
 		BasePluginExtension base = project.getExtensions().getByType(BasePluginExtension.class);
-		base.getArchivesName().set(getProperty(project, "data.mod_name"));
+		base.getArchivesName().set(getProperty(project, "data.mod_name").replace(" ", ""));
 
 		Jar jar = (Jar) project.getTasks().getByName("jar");
 		jar.from(getRootFile(project, "LICENSE"), (spec) -> {

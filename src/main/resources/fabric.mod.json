@@ -16,13 +16,13 @@
     "environment": "*",
     "entrypoints": {
         "main": [
-            "net.lopymine.mossy.Mossy"
+	        "net.lopymine.ms.MoreSpace"
         ],
         "client": [
-            "net.lopymine.mossy.client.MossyClient"
+	        "net.lopymine.ms.client.MoreSpaceClient"
         ],
         "modmenu": [
-            "net.lopymine.mossy.modmenu.ModMenuIntegration"
+	        "net.lopymine.ms.modmenu.ModMenuIntegration"
         ]
     },
     "depends": {
@@ -33,6 +33,8 @@
     },
     "accessWidener": "aws/${minecraft}.accesswidener",
     "mixins": [
-        "${mod_id}.mixins.json"
+        "${mod_id}.mixins.json",
+        "${mod_id}-sodium.mixins.json",
+        "${mod_id}-yacl.mixins.json"
     ]
 }
