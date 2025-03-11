@@ -4,6 +4,7 @@
 
 # 💬 Description
 Simple Client-Side Fabric mod which removes the annoying crowd by gradually hiding closest players.
+### This mod requires "*Fabulous!*" graphics settings!
 
 <img src="https://cdn.modrinth.com/data/DoTHHqk4/images/6fb0570c2b7bf4dbd2cb0c8da8e452b781d4783f.gif" width="600px" alt="Showcase"/>
 
