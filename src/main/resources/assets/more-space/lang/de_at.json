@@ -1,0 +1,42 @@
+{
+	"modmenu.descriptionTranslation.${mod_id}": "Clientseitige Fabric-Mod, die nahe Spieler allmählich ausblendet.",
+	"${mod_id}.modmenu.title": "§l${mod_name} Einstellung",
+	"${mod_id}.modmenu.no_config_library_screen.message": "Du musst §6§lYet Another Config Lib [YACL]§f installieren, um den Einstellungsbildschirm von ${mod_name} zu öffnen.\n\n§a§lÖffne die §6§lYACL §a§lModrinth-Seite?",
+
+	"${mod_id}.modmenu.category.general.name": "§lAllgemein",
+
+
+	"${mod_id}.modmenu.group.main.name": "§lHaupt",
+	"${mod_id}.modmenu.group.main.description": "Haupteinstellungen der ${mod_name}-Mod.",
+
+	"${mod_id}.modmenu.option.mod_enabled.name": "Mod aktiviert",
+	"${mod_id}.modmenu.option.mod_enabled.description": "Falls aktiviert, werden nahe Spieler durchsichtig. Falls deaktiviert, bleibt alles sichtbar.",
+
+
+	"${mod_id}.modmenu.group.hiding.name": "§lVerbergen",
+	"${mod_id}.modmenu.group.hiding.description": "Einstellungen zur Steuerung der Transparenz von Spielern.",
+
+	"${mod_id}.modmenu.option.hiding_activation_distance.name": "Verbergen-Aktivierungsdistanz",
+	"${mod_id}.modmenu.option.hiding_activation_distance.description": "Die Entfernung, bei der ein Spieler beginnt, durchsichtig zu werden.\n\nJe näher ein Spieler dir ist, desto transparenter wird er!",
+
+	"${mod_id}.modmenu.option.full_hiding_distance.name": "Volle Verbergungsdistanz",
+	"${mod_id}.modmenu.option.full_hiding_distance.description": "Die Entfernung, bei der ein Spieler vollständig durchsichtig wird.",
+
+	"${mod_id}.modmenu.option.min_hiding_value.name": "Minimaler Transparenz-Wert",
+	"${mod_id}.modmenu.option.min_hiding_value.description": "Der niedrigste Transparenzwert, den ein Spieler haben kann.",
+
+
+	"${mod_id}.modmenu.group.gameplay.name": "§lGameplay",
+	"${mod_id}.modmenu.group.gameplay.description": "Einstellungen, die das Spielgeschehen betreffen.",
+
+	"${mod_id}.modmenu.option.click_through_translucent_players_enabled.name": "Klicken durch durchsichtige Spieler ermöglichen",
+	"${mod_id}.modmenu.option.click_through_translucent_players_enabled.description": "Falls aktiviert, kannst du durch durchsichtige Spieler klicken, z. B. um eine Truhe zu öffnen. Falls deaktiviert, nicht.",
+
+
+	"${mod_id}.keybinding.name": "${mod_name}",
+	"${mod_id}.keybinding.toggle_mod.name": "Mod umschalten",
+
+
+	"${mod_id}.modmenu.formatter.enabled_or_disabled.true": "Aktiviert",
+	"${mod_id}.modmenu.formatter.enabled_or_disabled.false": "Deaktiviert"
+}
