@@ -22,7 +22,7 @@ repositories {
 }
 
 dependencies {
-//	include(implementation(annotationProcessor("com.github.bawnorton.mixinsquared:mixinsquared-fabric:${prop("base.mixin_squared")}")))
+	include(implementation(annotationProcessor("com.github.bawnorton.mixinsquared:mixinsquared-fabric:${prop("base.mixin_squared")}")))
 }
 
 String prop(String key) {
