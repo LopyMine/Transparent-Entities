@@ -5,8 +5,10 @@ import net.minecraft.entity.Entity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.*;
 
-import net.lopymine.ms.manager.HidingManager;
+import net.lopymine.ms.render.TransparencyManager;
+import net.lopymine.ms.render.MoreSpaceLayers;
 import net.lopymine.ms.entity.EntityCaptures;
+import net.lopymine.ms.render.TransparencyManager;
 
 @Mixin(ModelPart.class)
 public class ModelPartMixin {
@@ -15,7 +17,7 @@ public class ModelPartMixin {
 	private int render(int argb) {
 		Entity entity = EntityCaptures.MAIN.getEntity();
 		if (entity != null) {
-			return HidingManager.INSTANCE.getAlpha(entity, argb);
+			return TransparencyManager.getTranslucentArgb(entity, argb);
 		}
 		return argb;
 	}

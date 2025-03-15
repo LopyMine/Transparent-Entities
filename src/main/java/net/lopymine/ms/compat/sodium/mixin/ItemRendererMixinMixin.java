@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.At;
 
 import net.lopymine.ms.entity.EntityCaptures;
-import net.lopymine.ms.manager.HidingManager;
+import net.lopymine.ms.render.TransparencyManager;
 import net.lopymine.ms.utils.*;
 
 @Pseudo
@@ -25,7 +25,7 @@ public class ItemRendererMixinMixin {
 			name = "renderBakedItemQuads"
 	)
 	@WrapOperation(at = @At(value = "INVOKE", target = "Lnet/caffeinemc/mods/sodium/client/render/immediate/model/BakedModelEncoder;writeQuadVertices(Lnet/caffeinemc/mods/sodium/api/vertex/buffer/VertexBufferWriter;Lnet/minecraft/client/util/math/MatrixStack$Entry;Lnet/caffeinemc/mods/sodium/client/model/quad/ModelQuadView;IIIZ)V"), method = "@MixinSquared:Handler")
-	private /*? if >=1.21.4 {*/ /*static *//*?}*/ void generated(VertexBufferWriter writer, Entry entry, ModelQuadView quad, int color, int light, int overlay, boolean bl, Operation<Void> original) {
+	private /*? if >=1.21.4 {*/ static /*?}*/ void generated(VertexBufferWriter writer, Entry entry, ModelQuadView quad, int color, int light, int overlay, boolean bl, Operation<Void> original) {
 		Entity entity = EntityCaptures.MAIN.getEntity();
 
 		if (entity == null) {
@@ -40,7 +40,7 @@ public class ItemRendererMixinMixin {
 
 		int argb = ArgbUtils.getArgb(a, r, g, b);
 
-		original.call(writer, entry, quad, ColorARGB.toABGR(HidingManager.INSTANCE.getAlpha(entity, argb)), light, overlay, bl);
+		original.call(writer, entry, quad, ColorARGB.toABGR(TransparencyManager.getTranslucentArgb(entity, argb)), light, overlay, bl);
 	}
 
 }

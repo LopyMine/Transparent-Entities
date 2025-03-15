@@ -1,7 +1,7 @@
 package net.lopymine.ms.mixin.armor;
 
 //? if >=1.21.2 {
-/*import net.minecraft.client.render.entity.equipment.EquipmentRenderer;
+import net.minecraft.client.render.entity.equipment.EquipmentRenderer;
 import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.util.*;
 import org.spongepowered.asm.mixin.Mixin;
@@ -11,15 +11,16 @@ import net.minecraft.client.render.*;
 import org.spongepowered.asm.mixin.injection.*;
 
 import net.lopymine.ms.client.MoreSpaceClient;
-import net.lopymine.ms.manager.HidingManager;
+import net.lopymine.ms.render.TransparencyManager;
+import net.lopymine.ms.render.MoreSpaceLayers;
 
 @Mixin(EquipmentRenderer.class)
 public class EquipmentRendererMixin {
 
 	//? if <=1.21.3 {
-	@WrapOperation(method = "render(Lnet/minecraft/item/equipment/EquipmentModel$LayerType;Lnet/minecraft/util/Identifier;Lnet/minecraft/client/model/Model;Lnet/minecraft/item/ItemStack;Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;ILnet/minecraft/util/Identifier;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/RenderLayer;getArmorCutoutNoCull(Lnet/minecraft/util/Identifier;)Lnet/minecraft/client/render/RenderLayer;"))
+	/*@WrapOperation(method = "render(Lnet/minecraft/item/equipment/EquipmentModel$LayerType;Lnet/minecraft/util/Identifier;Lnet/minecraft/client/model/Model;Lnet/minecraft/item/ItemStack;Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;ILnet/minecraft/util/Identifier;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/RenderLayer;getArmorCutoutNoCull(Lnet/minecraft/util/Identifier;)Lnet/minecraft/client/render/RenderLayer;"))
 	private RenderLayer renderTransparencyArmorParts(Identifier identifier, Operation<RenderLayer> original) {
-		return HidingManager.INSTANCE.getLayer(identifier, () -> original.call(identifier));
+		return MoreSpaceLayers.getLayer(identifier, () -> original.call(identifier));
 	}
 
 	@WrapOperation(method = "render(Lnet/minecraft/item/equipment/EquipmentModel$LayerType;Lnet/minecraft/util/Identifier;Lnet/minecraft/client/model/Model;Lnet/minecraft/item/ItemStack;Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;ILnet/minecraft/util/Identifier;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/item/ItemRenderer;getArmorGlintConsumer(Lnet/minecraft/client/render/VertexConsumerProvider;Lnet/minecraft/client/render/RenderLayer;Z)Lnet/minecraft/client/render/VertexConsumer;"))
@@ -32,12 +33,12 @@ public class EquipmentRendererMixin {
 
 	@WrapOperation(method = "render(Lnet/minecraft/item/equipment/EquipmentModel$LayerType;Lnet/minecraft/util/Identifier;Lnet/minecraft/client/model/Model;Lnet/minecraft/item/ItemStack;Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;ILnet/minecraft/util/Identifier;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/TexturedRenderLayers;getArmorTrims(Z)Lnet/minecraft/client/render/RenderLayer;"))
 	private RenderLayer renderTransparencyTrim(boolean bl, Operation<RenderLayer> original) {
-		return HidingManager.INSTANCE.getLayer(TexturedRenderLayers.ARMOR_TRIMS_ATLAS_TEXTURE, () -> original.call(bl));
+		return MoreSpaceLayers.getLayer(TexturedRenderLayers.ARMOR_TRIMS_ATLAS_TEXTURE, () -> original.call(bl));
 	}
-	//?} else {
-	/^@WrapOperation(method = "render(Lnet/minecraft/client/render/entity/equipment/EquipmentModel$LayerType;Lnet/minecraft/registry/RegistryKey;Lnet/minecraft/client/model/Model;Lnet/minecraft/item/ItemStack;Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;ILnet/minecraft/util/Identifier;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/RenderLayer;getArmorCutoutNoCull(Lnet/minecraft/util/Identifier;)Lnet/minecraft/client/render/RenderLayer;"))
+	*///?} else {
+	@WrapOperation(method = "render(Lnet/minecraft/client/render/entity/equipment/EquipmentModel$LayerType;Lnet/minecraft/registry/RegistryKey;Lnet/minecraft/client/model/Model;Lnet/minecraft/item/ItemStack;Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;ILnet/minecraft/util/Identifier;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/RenderLayer;getArmorCutoutNoCull(Lnet/minecraft/util/Identifier;)Lnet/minecraft/client/render/RenderLayer;"))
 	private RenderLayer renderTransparencyArmorParts(Identifier texture, Operation<RenderLayer> original) {
-		return HidingManager.INSTANCE.getLayer(texture, () -> original.call(texture));
+		return MoreSpaceLayers.getLayer(texture, () -> original.call(texture));
 	}
 
 //	@WrapOperation(method = "render(Lnet/minecraft/client/render/entity/equipment/EquipmentModel$LayerType;Lnet/minecraft/registry/RegistryKey;Lnet/minecraft/client/model/Model;Lnet/minecraft/item/ItemStack;Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;ILnet/minecraft/util/Identifier;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/item/ItemRenderer;getArmorGlintConsumer(Lnet/minecraft/client/render/VertexConsumerProvider;Lnet/minecraft/client/render/RenderLayer;Z)Lnet/minecraft/client/render/VertexConsumer;"))
@@ -50,9 +51,9 @@ public class EquipmentRendererMixin {
 
 	@WrapOperation(method = "render(Lnet/minecraft/client/render/entity/equipment/EquipmentModel$LayerType;Lnet/minecraft/registry/RegistryKey;Lnet/minecraft/client/model/Model;Lnet/minecraft/item/ItemStack;Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;ILnet/minecraft/util/Identifier;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/TexturedRenderLayers;getArmorTrims(Z)Lnet/minecraft/client/render/RenderLayer;"))
 	private RenderLayer renderTransparencyTrim(boolean bl, Operation<RenderLayer> original) {
-		return HidingManager.INSTANCE.getLayer(TexturedRenderLayers.ARMOR_TRIMS_ATLAS_TEXTURE, () -> original.call(bl));
+		return MoreSpaceLayers.getLayer(TexturedRenderLayers.ARMOR_TRIMS_ATLAS_TEXTURE, () -> original.call(bl));
 	}
-	^///?}
+	//?}
 
 }
-*///?}
+//?}

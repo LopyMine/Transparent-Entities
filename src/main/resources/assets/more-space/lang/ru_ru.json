@@ -24,6 +24,8 @@
 	"${mod_id}.modmenu.option.min_hiding_value.name": "Минимальное значение скрытия",
 	"${mod_id}.modmenu.option.min_hiding_value.description": "Минимальная прозрачность скрытия игроков.",
 
+	"${mod_id}.modmenu.option.hide_shadow_enabled.name": "Включить скрытие тени",
+	"${mod_id}.modmenu.option.hide_shadow_enabled.description": "Если включено, тени игроков будут тоже становиться полупрозрачными; Если отключено, не будут.",
 
 	"${mod_id}.modmenu.group.gameplay.name": "§lИгра",
 	"${mod_id}.modmenu.group.gameplay.description": "Настройки, связанные с самой игрой.",

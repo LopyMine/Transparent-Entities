@@ -4,7 +4,7 @@ package net.lopymine.ms.utils;
 public class ArgbUtils {
 
 	public static int swapAlpha(int argb, int alpha) {
-		return getArgb(alpha, getRed(argb), getGreen(argb), getBlue(argb));
+		return getArgb(Math.min(getAlpha(argb), alpha), getRed(argb), getGreen(argb), getBlue(argb));
 	}
 
 	public static int getAlpha(int argb) {

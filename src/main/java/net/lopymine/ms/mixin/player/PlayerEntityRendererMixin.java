@@ -15,25 +15,26 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import net.lopymine.ms.client.MoreSpaceClient;
 
 //? >=1.21.2 {
-/*import net.minecraft.client.render.entity.state.PlayerEntityRenderState;
-import net.lopymine.ms.manager.HidingManager;
+import net.minecraft.client.render.entity.state.PlayerEntityRenderState;
+import net.lopymine.ms.render.TransparencyManager;
+import net.lopymine.ms.render.MoreSpaceLayers;
 import net.lopymine.ms.entity.EntityCaptures;
-*///?}
+//?}
 
 @Mixin(PlayerEntityRenderer.class)
-public abstract class PlayerEntityRendererMixin extends LivingEntityRenderer<AbstractClientPlayerEntity/*? if >=1.21.2 {*/ /*, PlayerEntityRenderState *//*?}*/, PlayerEntityModel/*? if <=1.21.1 {*/ <AbstractClientPlayerEntity> /*?}*/> {
+public abstract class PlayerEntityRendererMixin extends LivingEntityRenderer<AbstractClientPlayerEntity/*? if >=1.21.2 {*/ , PlayerEntityRenderState /*?}*/, PlayerEntityModel/*? if <=1.21.1 {*/ /*<AbstractClientPlayerEntity> *//*?}*/> {
 
-	public PlayerEntityRendererMixin(Context ctx, PlayerEntityModel/*? if <=1.21.1 {*/ <AbstractClientPlayerEntity> /*?}*/ model, float shadowRadius) {
+	public PlayerEntityRendererMixin(Context ctx, PlayerEntityModel/*? if <=1.21.1 {*/ /*<AbstractClientPlayerEntity> *//*?}*/ model, float shadowRadius) {
         super(ctx, model, shadowRadius);
     }
 
 	//? if <=1.21.1 {
-	@Inject(method = "setModelPose", at = @At(value = "TAIL"))
+	/*@Inject(method = "setModelPose", at = @At(value = "TAIL"))
 	private void modifyHeadVisibility(AbstractClientPlayerEntity player, CallbackInfo ci) {
-	//?} else {
-	/*@Inject(at = @At("TAIL"), method = "updateRenderState(Lnet/minecraft/client/network/AbstractClientPlayerEntity;Lnet/minecraft/client/render/entity/state/PlayerEntityRenderState;F)V")
+	*///?} else {
+	@Inject(at = @At("TAIL"), method = "updateRenderState(Lnet/minecraft/client/network/AbstractClientPlayerEntity;Lnet/minecraft/client/render/entity/state/PlayerEntityRenderState;F)V")
 	private void modifyHeadVisibility(AbstractClientPlayerEntity player, PlayerEntityRenderState playerEntityRenderState, float f, CallbackInfo ci) {
-	*///?}
+	//?}
         if (player.isSpectator()) {
             return;
         }

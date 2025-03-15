@@ -2,7 +2,7 @@ package net.lopymine.ms.mixin;
 
 //? if >=1.21.2 {
 
-/*import com.llamalad7.mixinextras.injector.wrapoperation.*;
+import com.llamalad7.mixinextras.injector.wrapoperation.*;
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.*;
@@ -32,4 +32,4 @@ public class EntityRenderDispatcherMixin {
 	}
 
 }
-*///?}
+//?}

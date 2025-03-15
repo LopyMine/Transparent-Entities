@@ -118,9 +118,10 @@ public class MossyPlugin implements Plugin<Project> {
 		project.setGroup(mavenGroup);
 
 		BasePluginExtension base = project.getExtensions().getByType(BasePluginExtension.class);
-		base.getArchivesName().set(getProperty(project, "data.mod_name").replace(" ", ""));
+		base.getArchivesName().set(getProperty(project, "data.mod_id").replace(" ", ""));
 
 		Jar jar = (Jar) project.getTasks().getByName("jar");
+		jar.getArchiveBaseName().set(base.getArchivesName().get());
 		jar.from(getRootFile(project, "LICENSE"), (spec) -> {
 			spec.rename(s -> "%s_%s".formatted(s, base.getArchivesName().get()));
 		});

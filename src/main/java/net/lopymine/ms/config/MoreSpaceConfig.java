@@ -17,6 +17,7 @@ import java.util.concurrent.CompletableFuture;
 import org.jetbrains.annotations.NotNull;
 
 import static net.lopymine.ms.utils.CodecUtils.option;
+import static net.lopymine.ms.utils.CodecUtils.optional;
 
 @Getter
 @Setter
@@ -28,7 +29,8 @@ public class MoreSpaceConfig {
 			option("full_hiding_distance", Codec.FLOAT, MoreSpaceConfig::getFullHidingDistance),
 			option("min_hiding_value", Codec.FLOAT, MoreSpaceConfig::getMinHidingValue),
 			option("mod_enabled", Codec.BOOL, MoreSpaceConfig::isModEnabled),
-			option("click_through_translucent_players_enabled", Codec.BOOL, MoreSpaceConfig::isClickThroughTranslucentPlayersEnabled)
+			option("click_through_translucent_players_enabled", Codec.BOOL, MoreSpaceConfig::isClickThroughTranslucentPlayersEnabled),
+			optional("hide_shadow_enabled", true, Codec.BOOL, MoreSpaceConfig::isHideShadowEnabled)
 	).apply(instance, MoreSpaceConfig::new));
 
 	private static final File CONFIG_FILE = FabricLoader.getInstance().getConfigDir().resolve(MoreSpace.MOD_ID + ".json5").toFile();
@@ -40,6 +42,7 @@ public class MoreSpaceConfig {
 	public float minHidingValue;
 	private boolean modEnabled;
 	private boolean clickThroughTranslucentPlayersEnabled;
+	private boolean hideShadowEnabled;
 
 	public MoreSpaceConfig() {
 		this.hidingActivationDistance              = 3.5F;
@@ -47,6 +50,7 @@ public class MoreSpaceConfig {
 		this.minHidingValue                        = 0.0F;
 		this.modEnabled                            = true;
 		this.clickThroughTranslucentPlayersEnabled = false;
+		this.hideShadowEnabled                     = true;
 	}
 
 	public static MoreSpaceConfig getInstance() {

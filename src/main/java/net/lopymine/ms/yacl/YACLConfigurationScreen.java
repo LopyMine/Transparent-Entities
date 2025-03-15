@@ -67,6 +67,11 @@ public class YACLConfigurationScreen {
 						.withBinding(defConfig.getMinHidingValue(), config::getMinHidingValue, config::setMinHidingValue, true)
 						.withController(0.0F, 1.0F, 0.1F)
 						.withDescription(SimpleContent.NONE)
+						.build(),
+				SimpleOption.<Boolean>startBuilder("hide_shadow_enabled")
+						.withBinding(defConfig.isHideShadowEnabled(), config::isHideShadowEnabled, config::setHideShadowEnabled, true)
+						.withController(ENABLED_OR_DISABLE_FORMATTER)
+						.withDescription(SimpleContent.NONE)
 						.build()
 		).build();
 	}

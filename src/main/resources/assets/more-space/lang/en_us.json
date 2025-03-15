@@ -25,6 +25,9 @@
 	"${mod_id}.modmenu.option.min_hiding_value.name": "Min Hiding Value",
 	"${mod_id}.modmenu.option.min_hiding_value.description": "The minimum transparency value of the player.",
 
+	"${mod_id}.modmenu.option.hide_shadow_enabled.name": "Hide Shadow Enabled",
+	"${mod_id}.modmenu.option.hide_shadow_enabled.description": "If enabled, player's shadows will be translucent too; if disabled, won't.",
+
 
 	"${mod_id}.modmenu.group.gameplay.name": "§lGameplay",
 	"${mod_id}.modmenu.group.gameplay.description": "Settings related to the game part.",

@@ -10,7 +10,7 @@ public class MoreSpace implements ModInitializer {
 
 	public static final String MOD_NAME = /*$ mod_name*/ "More Space";
 	public static final String MOD_ID = /*$ mod_id*/ "more-space";
-	public static final String YACL_DEPEND_VERSION = /*$ yacl*/ "3.6.2+1.21-fabric";
+	public static final String YACL_DEPEND_VERSION = /*$ yacl*/ "3.6.2+1.21.4-fabric";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_NAME);
 
 	public static Identifier id(String path) {

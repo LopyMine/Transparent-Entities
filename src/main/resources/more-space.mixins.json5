@@ -12,29 +12,29 @@
 		"LivingEntityRendererMixin", // good
 
 		//? if <=1.21.1 {
-		"elytra.ElytraFeatureRendererMixin",
+		/*"elytra.ElytraFeatureRendererMixin",
 		"armor.ArmorFeatureRendererMixin",
 		"arrow.ProjectileEntityRendererMixin",
-		//?}
-
-		//? if >=1.21.2 {
-		/*"EntityRenderDispatcherMixin",
-		"armor.EquipmentRendererMixin",
-		"arrow.StuckObjectsFeatureRendererMixin",
 		*///?}
 
-		//? if <=1.21.3 {
-		"builtin.BuiltinModelItemRendererMixin",
-		"builtin.chest.ChestBlockEntityRendererMixin",
-		"builtin.conduit.ConduitBlockEntityRendererMixin",
+		//? if >=1.21.2 {
+		"EntityRenderDispatcherMixin",
+		"armor.EquipmentRendererMixin",
+		"arrow.StuckObjectsFeatureRendererMixin",
 		//?}
 
+		//? if <=1.21.3 {
+		/*"builtin.BuiltinModelItemRendererMixin",
+		"builtin.chest.ChestBlockEntityRendererMixin",
+		"builtin.conduit.ConduitBlockEntityRendererMixin",
+		*///?}
+
 		//? if >=1.21.4 {
-		/*"builtin.shield.ShieldModelRendererMixin",
+		"builtin.shield.ShieldModelRendererMixin",
 		"builtin.conduit.ConduitModelRendererMixin",
 		"builtin.chest.ChestModelRendererMixin",
 		"builtin.trident.TridentModelRendererMixin",
-		*///?}
+		//?}
 
 		"armor.fabric.ArmorRendererMixin",
 		"builtin.banner.BannerBlockEntityRendererMixin",
@@ -47,7 +47,8 @@
 		"item.ItemRendererMixin",
 		"parrot.ShoulderParrotFeatureRendererMixin",
 		"player.LivingEntityRendererMixin",
-		"player.PlayerEntityRendererMixin" // good
+		"player.PlayerEntityRendererMixin", // good,
+		"EntityRenderDispatcherShadowMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
