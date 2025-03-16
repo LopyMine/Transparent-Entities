@@ -1,5 +1,5 @@
 {
-	"modmenu.descriptionTranslation.${mod_id}": "Простой Fabric мод, который скрывает ближайших мобов, тем самым убирая надоедливую толпу мобов.",
+	"modmenu.descriptionTranslation.${mod_id}": "Простой Fabric мод, который скрывает ближайших игроков (и других мобов).",
 	"${mod_id}.modmenu.title": "§l Конфигурация ${mod_name}",
 	"${mod_id}.modmenu.no_config_library_screen.message": "Вам необходимо установить §6§lYet Another Config Lib [YACL]§f, чтобы открыть экран конфигурации ${mod_name} \n\n§a§lОткрыть страницу §6§lYACL §a§lна Modrinth?",
 

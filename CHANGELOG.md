@@ -1,5 +1,5 @@
-- Added pizza (with pineapples)
-- Removed Herobrine
-- Added little mob which will hunting for you everywhere
-- Bumped to every minecraft version from INDEV to 1.21
-- Little fixes
+- Added options to enable transparency for other entities [BETA] (#3)
+- Added option to enable entity shadows hiding too
+- Fixed hiding settings, now it works properly
+- Fixed transparency elytra
+- Now the distance between you and the entity is calculated relative to the camera position

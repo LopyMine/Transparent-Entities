@@ -10,6 +10,7 @@
 		"LivingEntityMixin",
 		"ModelPartMixin",
 		"LivingEntityRendererMixin", // good
+		"EntityRenderDispatcherMixin",
 
 		//? if <=1.21.1 {
 		/*"elytra.ElytraFeatureRendererMixin",
@@ -18,7 +19,6 @@
 		*///?}
 
 		//? if >=1.21.2 {
-		"EntityRenderDispatcherMixin",
 		"armor.EquipmentRendererMixin",
 		"arrow.StuckObjectsFeatureRendererMixin",
 		//?}

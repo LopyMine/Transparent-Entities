@@ -11,6 +11,7 @@ import net.minecraft.entity.*;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import net.lopymine.ms.render.TransparencyManager;
+import net.lopymine.ms.utils.ArgbUtils;
 
 //? if >=1.21.2 {
 import net.lopymine.ms.utils.*;
@@ -25,7 +26,7 @@ public class LivingEntityRendererMixin {
 	//? if <=1.21.1 {
 	/*@WrapOperation(method = "render(Lnet/minecraft/entity/LivingEntity;FFLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/entity/model/EntityModel;render(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumer;III)V"))
 	private void wrapRender(EntityModel<?> instance, MatrixStack matrixStack, VertexConsumer vertexConsumer, int a, int b, int c, Operation<Void> original, @Local(argsOnly = true) LivingEntity livingEntity) {
-		float alpha = TransparencyManager.getTranslucentArgb(livingEntity, c);
+		float alpha = ArgbUtils.getAlpha(TransparencyManager.getTranslucentArgb(livingEntity, c));
 		if (alpha != 0.0F) {
 			original.call(instance, matrixStack, vertexConsumer, a, b, c);
 		}
@@ -33,7 +34,7 @@ public class LivingEntityRendererMixin {
 
 	@WrapOperation(method = "render(Lnet/minecraft/entity/LivingEntity;FFLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/entity/feature/FeatureRenderer;render(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;ILnet/minecraft/entity/Entity;FFFFFF)V"))
 	private void wrapFeatureRender(FeatureRenderer<?, ?> instance, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, Entity entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch, Operation<Void> original) {
-		float alpha = TransparencyManager.getTranslucentArgb(entity, -1);
+		float alpha = ArgbUtils.getAlpha(TransparencyManager.getTranslucentArgb(entity, -1));
 		if (alpha != 0.0F) {
 			original.call(instance, matrices, vertexConsumers, light, entity, limbAngle, limbDistance, tickDelta, animationProgress, headYaw, headPitch);
 		}

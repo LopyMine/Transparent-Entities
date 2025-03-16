@@ -18,7 +18,10 @@ public class LivingEntityMixin {
 		if (!MoreSpaceClient.getConfig().isClickThroughTranslucentPlayersEnabled() || !MoreSpaceClient.getConfig().isModEnabled()) {
 			return;
 		}
-		cir.setReturnValue(true);
+		LivingEntity livingEntity = (LivingEntity) (Object) this;
+		if (TransparencyManager.isTransparency(livingEntity)) {
+			cir.setReturnValue(false);
+		}
 	}
 
 }

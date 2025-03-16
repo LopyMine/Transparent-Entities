@@ -35,28 +35,9 @@ public abstract class LivingEntityRendererMixin extends EntityRenderer<LivingEnt
 	}
 
 	//? if <=1.21.1 {
-	/*@Inject(at = @At("HEAD"), method = "render(Lnet/minecraft/entity/LivingEntity;FFLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V")
-	private void beforeRendered(LivingEntity livingEntity, float f, float g, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, CallbackInfo ci) {
-		if (livingEntity instanceof PlayerEntity && MoreSpaceClient.getConfig().isModEnabled()) {
-			EntityCaptures.MAIN.setEntity(livingEntity);
-		}
-	}
-
-	@Inject(at = @At("TAIL"), method = "render(Lnet/minecraft/entity/LivingEntity;FFLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V")
-	private void afterRenderer(LivingEntity livingEntity, float f, float g, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, CallbackInfo ci) {
-		if (livingEntity instanceof PlayerEntity && MoreSpaceClient.getConfig().isModEnabled()) {
-			EntityCaptures.MAIN.clearEntity();
-		}
-	}
-	*///?}
-
-	//? if <=1.21.1 {
 	/*@WrapOperation(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/entity/LivingEntityRenderer;getRenderLayer(Lnet/minecraft/entity/LivingEntity;ZZZ)Lnet/minecraft/client/render/RenderLayer;"), method = "render(Lnet/minecraft/entity/LivingEntity;FFLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V")
 	private RenderLayer swapRenderLayer(LivingEntityRenderer<?, ?> instance, LivingEntity entity, boolean showBody, boolean translucent, boolean showOutline, Operation<RenderLayer> original) {
-		if (entity instanceof PlayerEntity) {
-			return MoreSpaceLayers.getLayer(this.getTexture(entity), () -> original.call(instance, entity, showBody, translucent, showOutline));
-		}
-		return original.call(instance, entity, showBody, translucent, showOutline);
+		return MoreSpaceLayers.getLayer(this.getTexture(entity), () -> original.call(instance, entity, showBody, translucent, showOutline));
 	}
 	*///?} else {
 
@@ -65,9 +46,7 @@ public abstract class LivingEntityRendererMixin extends EntityRenderer<LivingEnt
 
 	@Inject(at = @At("RETURN"), method = "getRenderLayer", cancellable = true)
 	private void wrapGetRenderLayer(LivingEntityRenderState state, boolean showBody, boolean translucent, boolean showOutline, CallbackInfoReturnable<RenderLayer> cir) {
-		//if (state instanceof PlayerEntityRenderState) {
 		cir.setReturnValue(MoreSpaceLayers.getLayer(this.getTexture(state), cir::getReturnValue));
-		//}
 	}
 	//?}
 
