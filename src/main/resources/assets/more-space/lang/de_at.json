@@ -1,5 +1,5 @@
 {
-	"modmenu.descriptionTranslation.${mod_id}": "Clientseitige Fabric-Mod, die nahe Spieler allmählich ausblendet.",
+	"modmenu.descriptionTranslation.${mod_id}": "Clientseitige Fabric-Mod, die die nächstgelegenen Spieler (und andere Kreaturen) allmählich ausblendet.",
 	"${mod_id}.modmenu.title": "§l${mod_name} Einstellung",
 	"${mod_id}.modmenu.no_config_library_screen.message": "Du musst §6§lYet Another Config Lib [YACL]§f installieren, um den Einstellungsbildschirm von ${mod_name} zu öffnen.\n\n§a§lÖffne die §6§lYACL §a§lModrinth-Seite?",
 
@@ -25,17 +25,27 @@
 	"${mod_id}.modmenu.option.min_hiding_value.name": "Minimaler Transparenz-Wert",
 	"${mod_id}.modmenu.option.min_hiding_value.description": "Der niedrigste Transparenzwert, den ein Spieler haben kann.",
 
-
+	"${mod_id}.modmenu.option.hide_shadow_enabled.name": "Schatten ausblenden aktiviert",
+	"${mod_id}.modmenu.option.hide_shadow_enabled.description": "Wenn aktiviert, werden die Schatten von Kreaturen ebenfalls durchsichtig; wenn deaktiviert, bleiben sie sichtbar.",
+	
+	
 	"${mod_id}.modmenu.group.gameplay.name": "§lGameplay",
 	"${mod_id}.modmenu.group.gameplay.description": "Einstellungen, die das Spielgeschehen betreffen.",
 
-	"${mod_id}.modmenu.option.click_through_translucent_players_enabled.name": "Klicken durch durchsichtige Spieler ermöglichen",
-	"${mod_id}.modmenu.option.click_through_translucent_players_enabled.description": "Falls aktiviert, kannst du durch durchsichtige Spieler klicken, z. B. um eine Truhe zu öffnen. Falls deaktiviert, nicht.",
+	"${mod_id}.modmenu.option.click_through_translucent_entities_enabled.name": "Klicken durch durchsichtige Spieler/Kreaturen ermöglichen",
+	"${mod_id}.modmenu.option.click_through_translucent_entities_enabled.description": "Falls aktiviert, kannst du durch durchsichtige Spieler/Kreaturen klicken, z. B. um eine Truhe zu öffnen. Falls deaktiviert, nicht.",
 
+	"${mod_id}.modmenu.category.entities.name": "§lKreaturen",
+
+	"${mod_id}.modmenu.label.empty": " ",
+	"${mod_id}.modmenu.label.entities.info": "Hier kannst du die Optionen zur Transparenz anderer Kreaturen finden.",
+	"${mod_id}.modmenu.label.entities.info.beta": "§l§6Denke daran! Dieses Feature befindet sich derzeit in der Beta-Phase!",
+
+	"${mod_id}.modmenu.option.hide_entity.name": "%s ausblenden",
+	"${mod_id}.modmenu.option.hide_entity.description": "Wenn aktiviert, wird %s transparent; wenn deaktiviert, bleibt es sichtbar.",
 
 	"${mod_id}.keybinding.name": "${mod_name}",
 	"${mod_id}.keybinding.toggle_mod.name": "Mod umschalten",
-
 
 	"${mod_id}.modmenu.formatter.enabled_or_disabled.true": "Aktiviert",
 	"${mod_id}.modmenu.formatter.enabled_or_disabled.false": "Deaktiviert"
