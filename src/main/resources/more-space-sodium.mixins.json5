@@ -6,7 +6,8 @@
 	"compatibilityLevel": "JAVA_${java}",
 	"mixins": [],
 	"client": [
-		"ItemRendererMixinMixin"
+		"ItemRendererMixinMixin",
+		"ModelBlockRendererMixinMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

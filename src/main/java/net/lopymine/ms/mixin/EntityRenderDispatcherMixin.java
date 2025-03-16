@@ -9,12 +9,9 @@ import net.minecraft.client.render.entity.*;
 import net.minecraft.client.render.entity.state.EntityRenderState;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-
-import net.lopymine.ms.client.MoreSpaceClient;
-import net.lopymine.ms.entity.EntityCaptures;
+import net.lopymine.ms.render.MoreSpaceRenderer;
 
 @Mixin(EntityRenderDispatcher.class)
 public class EntityRenderDispatcherMixin {
@@ -22,13 +19,7 @@ public class EntityRenderDispatcherMixin {
 	@SuppressWarnings("all")
 	@WrapOperation(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/entity/EntityRenderer;render(Lnet/minecraft/client/render/entity/state/EntityRenderState;Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V"), method = "render(Lnet/minecraft/entity/Entity;DDDFLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;ILnet/minecraft/client/render/entity/EntityRenderer;)V")
 	private void generated(EntityRenderer instance, EntityRenderState entityRenderState, MatrixStack matrixStack, VertexConsumerProvider provider, int i, Operation<Void> original, @Local(argsOnly = true) Entity entity) {
-		if (entity instanceof PlayerEntity && MoreSpaceClient.getConfig().isModEnabled()) {
-			EntityCaptures.MAIN.setEntity(entity);
-		}
-		original.call(instance, entityRenderState, matrixStack, provider, i);
-		if (entity instanceof PlayerEntity && MoreSpaceClient.getConfig().isModEnabled()) {
-			EntityCaptures.MAIN.clearEntity();
-		}
+		MoreSpaceRenderer.handleEntityRendering(entity, () -> original.call(instance, entityRenderState, matrixStack, provider, i));
 	}
 
 }

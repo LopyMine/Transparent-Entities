@@ -2,10 +2,8 @@ package net.lopymine.ms.render;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
-import net.minecraft.client.render.Camera;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.*;
 
 import net.fabricmc.loader.api.FabricLoader;
@@ -17,6 +15,10 @@ import net.lopymine.ms.utils.ArgbUtils;
 public class TransparencyManager {
 
 	public static int getTranslucentArgb(Entity entity, int original) {
+		if (!MoreSpaceClient.getConfig().isModEnabled()) {
+			return original;
+		}
+
 		MinecraftClient client = MinecraftClient.getInstance();
 		ClientPlayerEntity player = client.player;
 		ClientWorld world = client.world;
@@ -80,6 +82,10 @@ public class TransparencyManager {
 	}
 
 	public static boolean isTransparency(Entity entity) {
+		if (!MoreSpaceClient.getConfig().isModEnabled()) {
+			return false;
+		}
+
 		MinecraftClient client = MinecraftClient.getInstance();
 		ClientPlayerEntity player = client.player;
 		ClientWorld world = client.world;
@@ -91,7 +97,7 @@ public class TransparencyManager {
 		}
 
 		if (player.equals(entity)) {
-			return ArgbUtils.getAlpha(getColorForYourself(-1)) != 255F;
+			return ArgbUtils.getAlpha(getColorForYourself(-1)) != 255;
 		}
 
 		float hidingActivationDistance = MoreSpaceClient.getConfig().hidingActivationDistance;

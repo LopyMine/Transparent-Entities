@@ -5,7 +5,7 @@ import com.llamalad7.mixinextras.injector.wrapoperation.*;
 import net.caffeinemc.mods.sodium.api.util.*;
 import net.caffeinemc.mods.sodium.api.vertex.buffer.VertexBufferWriter;
 import net.caffeinemc.mods.sodium.client.model.quad.ModelQuadView;
-import net.minecraft.client.render.item.ItemRenderer;
+import net.minecraft.client.render.block.BlockModelRenderer;
 import net.minecraft.client.util.math.MatrixStack.Entry;
 import net.minecraft.entity.Entity;
 import org.spongepowered.asm.mixin.*;
@@ -13,23 +13,22 @@ import org.spongepowered.asm.mixin.injection.At;
 
 import net.lopymine.ms.entity.EntityCaptures;
 import net.lopymine.ms.render.TransparencyManager;
-import net.lopymine.ms.utils.*;
+import net.lopymine.ms.utils.ArgbUtils;
 
 @Pseudo
-@Mixin(value = ItemRenderer.class, priority = 2000)
-public class ItemRendererMixinMixin {
+@Mixin(value = BlockModelRenderer.class, priority = 2000)
+public class ModelBlockRendererMixinMixin {
 
 	@Dynamic
 	@TargetHandler(
-			mixin = "net.caffeinemc.mods.sodium.mixin.features.render.model.item.ItemRendererMixin",
-			name = "renderBakedItemQuads"
+			mixin = "net.caffeinemc.mods.sodium.mixin.features.render.model.block.ModelBlockRendererMixin",
+			name = "renderQuads"
 	)
 	@WrapOperation(at = @At(value = "INVOKE", target = "Lnet/caffeinemc/mods/sodium/client/render/immediate/model/BakedModelEncoder;writeQuadVertices(Lnet/caffeinemc/mods/sodium/api/vertex/buffer/VertexBufferWriter;Lnet/minecraft/client/util/math/MatrixStack$Entry;Lnet/caffeinemc/mods/sodium/client/model/quad/ModelQuadView;IIIZ)V"), method = "@MixinSquared:Handler")
-	private /*? if >=1.21.4 {*/ static /*?}*/ void generated(VertexBufferWriter writer, Entry entry, ModelQuadView quad, int color, int light, int overlay, boolean bl, Operation<Void> original) {
+	private static void generated(VertexBufferWriter writer, Entry entry, ModelQuadView view, int color, int light, int overlay, boolean colorize, Operation<Void> original) {
 		Entity entity = EntityCaptures.MAIN.getEntity();
-
 		if (entity == null) {
-			original.call(writer, entry, quad, color, light, overlay, bl);
+			original.call(writer, entry, view, color, light, overlay, colorize);
 			return;
 		}
 
@@ -38,9 +37,11 @@ public class ItemRendererMixinMixin {
 		int g = ColorABGR.unpackGreen(color);
 		int b = ColorABGR.unpackBlue(color);
 
-		int argb = ArgbUtils.getArgb(a, r, g, b);
+		int originalArgb = ArgbUtils.getArgb(a, r, g, b);
 
-		original.call(writer, entry, quad, ColorARGB.toABGR(TransparencyManager.getTranslucentArgb(entity, argb)), light, overlay, bl);
+		int translucentColor = ColorARGB.toABGR(TransparencyManager.getTranslucentArgb(entity, originalArgb));
+
+		original.call(writer, entry, view, translucentColor, light, overlay, colorize);
 	}
 
 }

@@ -48,7 +48,10 @@
 		"parrot.ShoulderParrotFeatureRendererMixin",
 		"player.LivingEntityRendererMixin",
 		"player.PlayerEntityRendererMixin", // good,
-		"EntityRenderDispatcherShadowMixin"
+		"EntityRenderDispatcherShadowMixin",
+		"FeatureRendererMixin",
+		"RenderLayersMixin",
+		"BlockModelRendererMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

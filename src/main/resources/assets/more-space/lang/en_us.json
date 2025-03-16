@@ -1,5 +1,5 @@
 {
-	"modmenu.descriptionTranslation.${mod_id}": "Client-Side Fabric mod which gradually hides closest players to you.",
+	"modmenu.descriptionTranslation.${mod_id}": "Client-Side Fabric mod which gradually hides closest players (and other entities) to you.",
 	"${mod_id}.modmenu.title": "§l${mod_name} Configuration",
 	"${mod_id}.modmenu.no_config_library_screen.message": "You need to install §6§lYet Another Config Lib [YACL]§f to open ${mod_name} Configuration Screen\n\n§a§lOpen §6§lYACL §a§lModrinth page?",
 
@@ -10,35 +10,42 @@
 	"${mod_id}.modmenu.group.main.description": "Main settings of ${mod_name} mod.",
 
 	"${mod_id}.modmenu.option.mod_enabled.name": "Mod Enabled",
-	"${mod_id}.modmenu.option.mod_enabled.description": "If enabled, nearest players will be translucent; if disabled, won't.",
+	"${mod_id}.modmenu.option.mod_enabled.description": "If enabled, nearest entities will be translucent; if disabled, won't.",
 
 
 	"${mod_id}.modmenu.group.hiding.name": "§lHiding",
-	"${mod_id}.modmenu.group.hiding.description": "Settings that control the power of players translucent.",
+	"${mod_id}.modmenu.group.hiding.description": "Settings that control the power of entities translucent.",
 
 	"${mod_id}.modmenu.option.hiding_activation_distance.name": "Hiding Activation Distance",
-	"${mod_id}.modmenu.option.hiding_activation_distance.description": "The distance at which the player will start to become translucent.\n\nThe closer player is to you, the more transparent he will be!",
+	"${mod_id}.modmenu.option.hiding_activation_distance.description": "The distance at which the entity will start to become translucent.\n\nThe closer entity is to you, the more transparent he will be!",
 
 	"${mod_id}.modmenu.option.full_hiding_distance.name": "Full Hiding Distance",
-	"${mod_id}.modmenu.option.full_hiding_distance.description": "The distance at which the player will be completely translucent.",
+	"${mod_id}.modmenu.option.full_hiding_distance.description": "The distance at which the entity will be completely translucent.",
 
 	"${mod_id}.modmenu.option.min_hiding_value.name": "Min Hiding Value",
-	"${mod_id}.modmenu.option.min_hiding_value.description": "The minimum transparency value of the player.",
+	"${mod_id}.modmenu.option.min_hiding_value.description": "The minimum transparency value of the entity.",
 
 	"${mod_id}.modmenu.option.hide_shadow_enabled.name": "Hide Shadow Enabled",
-	"${mod_id}.modmenu.option.hide_shadow_enabled.description": "If enabled, player's shadows will be translucent too; if disabled, won't.",
-
-
+	"${mod_id}.modmenu.option.hide_shadow_enabled.description": "If enabled, entity's shadows will be translucent too; if disabled, won't.",
+	
+	
 	"${mod_id}.modmenu.group.gameplay.name": "§lGameplay",
 	"${mod_id}.modmenu.group.gameplay.description": "Settings related to the game part.",
 
-	"${mod_id}.modmenu.option.click_through_translucent_players_enabled.name": "Click Through Translucent Players Enabled",
-	"${mod_id}.modmenu.option.click_through_translucent_players_enabled.description": "If enabled, you will be able to click through translucent player, for example, open chest; if disabled, won't.",
+	"${mod_id}.modmenu.option.click_through_translucent_entities_enabled.name": "Click Through Translucent entities Enabled",
+	"${mod_id}.modmenu.option.click_through_translucent_entities_enabled.description": "If enabled, you will be able to click through translucent entity, for example, open chest; if disabled, won't.",
 
+	"${mod_id}.modmenu.category.entities.name": "§lEntities",
+
+	"${mod_id}.modmenu.label.empty": " ",
+	"${mod_id}.modmenu.label.entities.info": "Here you can find the options to enable transparency of other entities.",
+	"${mod_id}.modmenu.label.entities.info.beta": "§l§6Remember! This feature currently in beta testing!",
+
+	"${mod_id}.modmenu.option.hide_entity.name": "Hide %s",
+	"${mod_id}.modmenu.option.hide_entity.description": "If enabled, %s will be translucent; if disabled, won't.",
 
 	"${mod_id}.keybinding.name": "${mod_name}",
 	"${mod_id}.keybinding.toggle_mod.name": "Toggle Mod",
-
 
 	"${mod_id}.modmenu.formatter.enabled_or_disabled.true": "Enabled",
 	"${mod_id}.modmenu.formatter.enabled_or_disabled.false": "Disabled"

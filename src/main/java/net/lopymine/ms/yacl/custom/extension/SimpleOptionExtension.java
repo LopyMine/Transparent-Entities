@@ -1,10 +1,10 @@
-package net.lopymine.ms.yacl.extension;
+package net.lopymine.ms.yacl.custom.extension;
 
 import dev.isxander.yacl3.api.controller.*;
 import net.minecraft.text.Text;
 
-import net.lopymine.ms.yacl.base.SimpleOption.Builder;
-import net.lopymine.ms.yacl.utils.EnumWithText;
+import net.lopymine.ms.yacl.custom.base.SimpleOption.Builder;
+import net.lopymine.ms.yacl.custom.utils.EnumWithText;
 import net.lopymine.ms.utils.ModMenuUtils;
 
 import java.util.function.Function;

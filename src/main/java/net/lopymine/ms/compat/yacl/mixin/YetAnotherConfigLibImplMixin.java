@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.At;
 
 import net.lopymine.ms.utils.yacl.BetterYACLScreenConfig;
-import net.lopymine.ms.yacl.screen.MoreSpaceYACLScreen;
+import net.lopymine.ms.yacl.custom.screen.MoreSpaceYACLScreen;
 
 @Pseudo
 @Mixin(YetAnotherConfigLibImpl.class)

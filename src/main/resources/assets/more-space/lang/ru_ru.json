@@ -1,5 +1,5 @@
 {
-	"modmenu.descriptionTranslation.${mod_id}": "Простой Fabric мод, который скрывает ближайших игроков, тем самым убирая надоедливую толпу игроков.",
+	"modmenu.descriptionTranslation.${mod_id}": "Простой Fabric мод, который скрывает ближайших мобов, тем самым убирая надоедливую толпу мобов.",
 	"${mod_id}.modmenu.title": "§l Конфигурация ${mod_name}",
 	"${mod_id}.modmenu.no_config_library_screen.message": "Вам необходимо установить §6§lYet Another Config Lib [YACL]§f, чтобы открыть экран конфигурации ${mod_name} \n\n§a§lОткрыть страницу §6§lYACL §a§lна Modrinth?",
 
@@ -9,29 +9,38 @@
 	"${mod_id}.modmenu.group.main.description": "Главные настройки мода ${mod_name}.",
 
 	"${mod_id}.modmenu.option.mod_enabled.name": "Включить мод",
-	"${mod_id}.modmenu.option.mod_enabled.description": "Если включён, то ближайшие игроки будут становиться полупрозрачными; Если отключено, не будут.",
+	"${mod_id}.modmenu.option.mod_enabled.description": "Если включён, то ближайшие мобы будут становиться полупрозрачными; Если отключено, не будут.",
 
 
 	"${mod_id}.modmenu.group.hiding.name": "§lСкрытие",
-	"${mod_id}.modmenu.group.hiding.description": "Настройки котролирующие силу скрытия игроков.",
+	"${mod_id}.modmenu.group.hiding.description": "Настройки котролирующие силу скрытия мобов.",
 
 	"${mod_id}.modmenu.option.hiding_activation_distance.name": "Расстояние начала скрытия",
-	"${mod_id}.modmenu.option.hiding_activation_distance.description": "Расстояние, при достижении которого игрок начнёт становиться полупрозрачным.\n\nЧем ближе игрок будет к вам, тем прозрачнее он будет!",
+	"${mod_id}.modmenu.option.hiding_activation_distance.description": "Расстояние, при достижении которого моб начнёт становиться полупрозрачным.\n\nЧем ближе моб будет к вам, тем прозрачнее он будет!",
 
 	"${mod_id}.modmenu.option.full_hiding_distance.name": "Расстояние полного скрытия",
-	"${mod_id}.modmenu.option.full_hiding_distance.description": "Расстояние, при котором игрок будет польностью скрыт.",
+	"${mod_id}.modmenu.option.full_hiding_distance.description": "Расстояние, при котором моб будет польностью скрыт.",
 
 	"${mod_id}.modmenu.option.min_hiding_value.name": "Минимальное значение скрытия",
-	"${mod_id}.modmenu.option.min_hiding_value.description": "Минимальная прозрачность скрытия игроков.",
+	"${mod_id}.modmenu.option.min_hiding_value.description": "Минимальная прозрачность скрытия мобов.",
 
 	"${mod_id}.modmenu.option.hide_shadow_enabled.name": "Включить скрытие тени",
-	"${mod_id}.modmenu.option.hide_shadow_enabled.description": "Если включено, тени игроков будут тоже становиться полупрозрачными; Если отключено, не будут.",
+	"${mod_id}.modmenu.option.hide_shadow_enabled.description": "Если включено, тени мобов будут тоже становиться полупрозрачными; Если отключено, не будут.",
 
 	"${mod_id}.modmenu.group.gameplay.name": "§lИгра",
 	"${mod_id}.modmenu.group.gameplay.description": "Настройки, связанные с самой игрой.",
 
-	"${mod_id}.modmenu.option.click_through_translucent_players_enabled.name": "Включить взаимодействие через полупрозрачных игроков",
-	"${mod_id}.modmenu.option.click_through_translucent_players_enabled.description": "Если включено, вы сможете взаимодействовать с миром через полупрозрачных игроков. К примеру, открыть сундук; Если отключено, не сможете.",
+	"${mod_id}.modmenu.option.click_through_translucent_entities_enabled.name": "Включить взаимодействие через полупрозрачных мобов",
+	"${mod_id}.modmenu.option.click_through_translucent_entities_enabled.description": "Если включено, вы сможете взаимодействовать с миром через полупрозрачных мобов. К примеру, открыть сундук; Если отключено, не сможете.",
+
+	"${mod_id}.modmenu.category.entities.name": "§lСущности",
+
+	"${mod_id}.modmenu.label.empty": " ",
+	"${mod_id}.modmenu.label.entities.info": "Здесь вы можете включить прозрачность для каждой сущности отдельно.",
+	"${mod_id}.modmenu.label.entities.info.beta": "§l§6Помните! Данная функция ещё находится в стадии тестирования!",
+
+	"${mod_id}.modmenu.option.hide_entity.name": "Скрывать %s",
+	"${mod_id}.modmenu.option.hide_entity.description": "Если включено, %s будет становиться полупрозрачным; Если отключено, не будет.",
 
 
 	"${mod_id}.keybinding.name": "${mod_name}",

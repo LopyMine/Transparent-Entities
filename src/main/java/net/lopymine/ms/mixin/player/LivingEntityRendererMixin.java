@@ -42,7 +42,7 @@ public class LivingEntityRendererMixin {
 	@WrapOperation(method = "render(Lnet/minecraft/client/render/entity/state/LivingEntityRenderState;Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/entity/model/EntityModel;render(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumer;III)V"))
 	private void wrapRender(EntityModel<?> instance, MatrixStack matrixStack, VertexConsumer vertexConsumer, int a, int b, int c, Operation<Void> original, @Local(argsOnly = true) LivingEntityRenderState state) {
 		Entity entity = EntityCaptures.MAIN.getEntity();
-		if (entity != null && ArgbUtils.getAlpha(TransparencyManager.getTranslucentArgb(entity, -1)) == 0 && MoreSpaceClient.getConfig().isModEnabled()) {
+		if (entity != null && ArgbUtils.getAlpha(TransparencyManager.getTranslucentArgb(entity, -1)) == 0) {
 			return;
 		}
 		original.call(instance, matrixStack, vertexConsumer, a, b, c);
@@ -51,7 +51,7 @@ public class LivingEntityRendererMixin {
 	@WrapOperation(method = "render(Lnet/minecraft/client/render/entity/state/LivingEntityRenderState;Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/entity/feature/FeatureRenderer;render(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;ILnet/minecraft/client/render/entity/state/EntityRenderState;FF)V"))
 	private void wrapFeatureRender(FeatureRenderer<?, ?> instance, MatrixStack matrixStack, VertexConsumerProvider provider, int i, EntityRenderState entityRenderState, float a, float b, Operation<Void> original, @Local(argsOnly = true) LivingEntityRenderState state) {
 		Entity entity = EntityCaptures.MAIN.getEntity();
-		if (entity != null && ArgbUtils.getAlpha(TransparencyManager.getTranslucentArgb(entity, -1)) == 0 && MoreSpaceClient.getConfig().isModEnabled()) {
+		if (entity != null && ArgbUtils.getAlpha(TransparencyManager.getTranslucentArgb(entity, -1)) == 0) {
 			return;
 		}
 		original.call(instance, matrixStack, provider, i, entityRenderState, a, b);

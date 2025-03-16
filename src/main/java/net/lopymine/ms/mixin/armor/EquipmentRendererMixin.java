@@ -1,6 +1,8 @@
 package net.lopymine.ms.mixin.armor;
 
 //? if >=1.21.2 {
+import com.llamalad7.mixinextras.sugar.Local;
+import net.minecraft.client.render.entity.equipment.EquipmentModel.LayerType;
 import net.minecraft.client.render.entity.equipment.EquipmentRenderer;
 import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.util.*;
@@ -37,8 +39,8 @@ public class EquipmentRendererMixin {
 	}
 	*///?} else {
 	@WrapOperation(method = "render(Lnet/minecraft/client/render/entity/equipment/EquipmentModel$LayerType;Lnet/minecraft/registry/RegistryKey;Lnet/minecraft/client/model/Model;Lnet/minecraft/item/ItemStack;Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;ILnet/minecraft/util/Identifier;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/RenderLayer;getArmorCutoutNoCull(Lnet/minecraft/util/Identifier;)Lnet/minecraft/client/render/RenderLayer;"))
-	private RenderLayer renderTransparencyArmorParts(Identifier texture, Operation<RenderLayer> original) {
-		return MoreSpaceLayers.getLayer(texture, () -> original.call(texture));
+	private RenderLayer renderTransparencyArmorParts(Identifier texture, Operation<RenderLayer> original, @Local(argsOnly = true) LayerType layerType) {
+		return MoreSpaceLayers.getLayer(layerType, texture, () -> original.call(texture));
 	}
 
 //	@WrapOperation(method = "render(Lnet/minecraft/client/render/entity/equipment/EquipmentModel$LayerType;Lnet/minecraft/registry/RegistryKey;Lnet/minecraft/client/model/Model;Lnet/minecraft/item/ItemStack;Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;ILnet/minecraft/util/Identifier;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/item/ItemRenderer;getArmorGlintConsumer(Lnet/minecraft/client/render/VertexConsumerProvider;Lnet/minecraft/client/render/RenderLayer;Z)Lnet/minecraft/client/render/VertexConsumer;"))

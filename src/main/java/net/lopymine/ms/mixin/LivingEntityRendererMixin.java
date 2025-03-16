@@ -65,9 +65,9 @@ public abstract class LivingEntityRendererMixin extends EntityRenderer<LivingEnt
 
 	@Inject(at = @At("RETURN"), method = "getRenderLayer", cancellable = true)
 	private void wrapGetRenderLayer(LivingEntityRenderState state, boolean showBody, boolean translucent, boolean showOutline, CallbackInfoReturnable<RenderLayer> cir) {
-		if (state instanceof PlayerEntityRenderState) {
-			cir.setReturnValue(MoreSpaceLayers.getLayer(this.getTexture(state), cir::getReturnValue));
-		}
+		//if (state instanceof PlayerEntityRenderState) {
+		cir.setReturnValue(MoreSpaceLayers.getLayer(this.getTexture(state), cir::getReturnValue));
+		//}
 	}
 	//?}
 

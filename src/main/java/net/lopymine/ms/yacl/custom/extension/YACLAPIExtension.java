@@ -1,4 +1,4 @@
-package net.lopymine.ms.yacl.extension;
+package net.lopymine.ms.yacl.custom.extension;
 
 import dev.isxander.yacl3.api.*;
 

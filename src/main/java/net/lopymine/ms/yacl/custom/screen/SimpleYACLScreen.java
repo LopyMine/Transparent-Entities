@@ -1,4 +1,4 @@
-package net.lopymine.ms.yacl.screen;
+package net.lopymine.ms.yacl.custom.screen;
 
 import dev.isxander.yacl3.api.*;
 import dev.isxander.yacl3.api.YetAnotherConfigLib.Builder;

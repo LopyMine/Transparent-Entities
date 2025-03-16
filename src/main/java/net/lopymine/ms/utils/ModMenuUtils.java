@@ -4,7 +4,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 import net.lopymine.ms.MoreSpace;
-import net.lopymine.ms.yacl.utils.SimpleContent;
+import net.lopymine.ms.yacl.custom.utils.SimpleContent;
 
 import java.util.function.Function;
 
@@ -12,6 +12,10 @@ public class ModMenuUtils {
 
 	public static String getOptionKey(String optionId) {
 		return String.format("modmenu.option.%s", optionId);
+	}
+
+	public static Text getLabel(String optionId) {
+		return MoreSpace.text(String.format("modmenu.label.%s", optionId));
 	}
 
 	public static String getCategoryKey(String categoryId) {

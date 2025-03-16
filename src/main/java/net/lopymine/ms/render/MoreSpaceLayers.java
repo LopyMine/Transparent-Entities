@@ -1,9 +1,11 @@
 package net.lopymine.ms.render;
 
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.*;
+import net.minecraft.client.render.RenderLayer.MultiPhaseParameters;
+import net.minecraft.client.render.VertexFormat.DrawMode;
+import net.minecraft.client.render.entity.equipment.EquipmentModel.LayerType;
 import net.minecraft.entity.Entity;
-import net.minecraft.util.Identifier;
+import net.minecraft.util.*;
 
 import net.lopymine.ms.client.MoreSpaceClient;
 import net.lopymine.ms.entity.EntityCaptures;
@@ -11,6 +13,22 @@ import net.lopymine.ms.entity.EntityCaptures;
 import java.util.function.*;
 
 public class MoreSpaceLayers {
+
+	private static final Function<Identifier, RenderLayer> ITEM_ENTITY_TRANSLUCENT_NO_CULL = Util.memoize((texture) -> {
+			MultiPhaseParameters multiPhaseParameters = RenderLayer.MultiPhaseParameters.builder().program(RenderLayer.ITEM_ENTITY_TRANSLUCENT_CULL_PROGRAM).texture(new RenderPhase.Texture(texture, TriState.FALSE, false)).transparency(RenderLayer.TRANSLUCENT_TRANSPARENCY).cull(RenderLayer.DISABLE_CULLING).target(RenderLayer.ITEM_ENTITY_TARGET).lightmap(RenderLayer.ENABLE_LIGHTMAP).overlay(RenderLayer.ENABLE_OVERLAY_COLOR).writeMaskState(RenderLayer.ALL_MASK).build(true);
+			return RenderLayer.of("item_entity_translucent_no_cull", VertexFormats.POSITION_COLOR_TEXTURE_OVERLAY_LIGHT_NORMAL, DrawMode.QUADS, 1536, true, true, multiPhaseParameters);
+	});
+
+	public static RenderLayer getLayer(LayerType layerType, Identifier texture, Supplier<RenderLayer> original) {
+		if (canReplaceRenderLayer()) {
+			if (layerType == LayerType.WINGS) {
+				return ITEM_ENTITY_TRANSLUCENT_NO_CULL.apply(texture);
+			} else {
+				return RenderLayer.getItemEntityTranslucentCull(texture);
+			}
+		}
+		return original.get();
+	}
 
 	public static RenderLayer getLayer(Identifier texture, Supplier<RenderLayer> original) {
 		if (canReplaceRenderLayer()) {

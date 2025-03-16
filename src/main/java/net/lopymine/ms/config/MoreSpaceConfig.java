@@ -2,6 +2,10 @@ package net.lopymine.ms.config;
 
 import com.google.gson.*;
 import lombok.*;
+import net.minecraft.entity.EntityType;
+import net.minecraft.registry.Registries;
+import net.minecraft.util.*;
+import net.minecraft.util.dynamic.Codecs;
 import org.slf4j.*;
 
 import com.mojang.serialization.*;
@@ -10,14 +14,15 @@ import net.fabricmc.loader.api.FabricLoader;
 
 import net.lopymine.ms.MoreSpace;
 import net.lopymine.ms.client.MoreSpaceClient;
+import net.lopymine.ms.utils.CodecUtils;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import org.jetbrains.annotations.NotNull;
 
 import static net.lopymine.ms.utils.CodecUtils.option;
-import static net.lopymine.ms.utils.CodecUtils.optional;
 
 @Getter
 @Setter
@@ -25,12 +30,14 @@ import static net.lopymine.ms.utils.CodecUtils.optional;
 public class MoreSpaceConfig {
 
 	public static final Codec<MoreSpaceConfig> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-			option("hiding_activation_distance", Codec.FLOAT, MoreSpaceConfig::getHidingActivationDistance),
-			option("full_hiding_distance", Codec.FLOAT, MoreSpaceConfig::getFullHidingDistance),
-			option("min_hiding_value", Codec.FLOAT, MoreSpaceConfig::getMinHidingValue),
-			option("mod_enabled", Codec.BOOL, MoreSpaceConfig::isModEnabled),
-			option("click_through_translucent_players_enabled", Codec.BOOL, MoreSpaceConfig::isClickThroughTranslucentPlayersEnabled),
-			optional("hide_shadow_enabled", true, Codec.BOOL, MoreSpaceConfig::isHideShadowEnabled)
+			option("hiding_activation_distance", 3.5F, Codec.FLOAT, MoreSpaceConfig::getHidingActivationDistance),
+			option("full_hiding_distance", 2.8F, Codec.FLOAT, MoreSpaceConfig::getFullHidingDistance),
+			option("min_hiding_value", 0.0F, Codec.FLOAT, MoreSpaceConfig::getMinHidingValue),
+			option("mod_enabled", true, Codec.BOOL, MoreSpaceConfig::isModEnabled),
+			option("click_through_translucent_players_enabled", false, Codec.BOOL, MoreSpaceConfig::isClickThroughTranslucentPlayersEnabled),
+			option("hide_shadow_enabled", true, Codec.BOOL, MoreSpaceConfig::isHideShadowEnabled),
+			option("favorite_players", new HashSet<>(), Uuids.CODEC, MoreSpaceConfig::getFavoritePlayers),
+			option("hide_entities", getStandardHideEntitiesSet(), Identifier.CODEC, MoreSpaceConfig::getHideEntities)
 	).apply(instance, MoreSpaceConfig::new));
 
 	private static final File CONFIG_FILE = FabricLoader.getInstance().getConfigDir().resolve(MoreSpace.MOD_ID + ".json5").toFile();
@@ -43,6 +50,8 @@ public class MoreSpaceConfig {
 	private boolean modEnabled;
 	private boolean clickThroughTranslucentPlayersEnabled;
 	private boolean hideShadowEnabled;
+	private HashSet<UUID> favoritePlayers;
+	private HashSet<Identifier> hideEntities;
 
 	public MoreSpaceConfig() {
 		this.hidingActivationDistance              = 3.5F;
@@ -51,6 +60,14 @@ public class MoreSpaceConfig {
 		this.modEnabled                            = true;
 		this.clickThroughTranslucentPlayersEnabled = false;
 		this.hideShadowEnabled                     = true;
+		this.favoritePlayers                       = new HashSet<>();
+		this.hideEntities                          = getStandardHideEntitiesSet();
+	}
+
+	private static HashSet<Identifier> getStandardHideEntitiesSet() {
+		HashSet<Identifier> identifiers = new HashSet<>();
+		identifiers.add(Registries.ENTITY_TYPE.getId(EntityType.PLAYER));
+		return identifiers;
 	}
 
 	public static MoreSpaceConfig getInstance() {

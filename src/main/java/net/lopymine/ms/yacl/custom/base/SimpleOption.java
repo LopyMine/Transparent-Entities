@@ -1,4 +1,4 @@
-package net.lopymine.ms.yacl.base;
+package net.lopymine.ms.yacl.custom.base;
 
 import dev.isxander.yacl3.api.*;
 import dev.isxander.yacl3.gui.YACLScreen;
@@ -7,8 +7,8 @@ import lombok.Getter;
 import lombok.experimental.ExtensionMethod;
 
 import net.lopymine.ms.utils.ModMenuUtils;
-import net.lopymine.ms.yacl.extension.YACLAPIExtension;
-import net.lopymine.ms.yacl.utils.SimpleContent;
+import net.lopymine.ms.yacl.custom.extension.YACLAPIExtension;
+import net.lopymine.ms.yacl.custom.utils.SimpleContent;
 
 import java.util.List;
 import java.util.function.*;
@@ -19,6 +19,10 @@ public class SimpleOption {
 
 	public static <T> Builder<T> startBuilder(String optionId) {
 		return new Builder<>(optionId);
+	}
+
+	public static LabelOption label(String labelId) {
+		return LabelOption.create(ModMenuUtils.getLabel(labelId));
 	}
 
 	public static ButtonBuilder startButtonBuilder(String optionId, BiConsumer<YACLScreen, ButtonOption> biConsumer) {

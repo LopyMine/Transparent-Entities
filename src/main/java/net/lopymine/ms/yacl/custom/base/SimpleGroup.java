@@ -1,4 +1,4 @@
-package net.lopymine.ms.yacl.base;
+package net.lopymine.ms.yacl.custom.base;
 
 import dev.isxander.yacl3.api.*;
 import dev.isxander.yacl3.gui.image.ImageRenderer;

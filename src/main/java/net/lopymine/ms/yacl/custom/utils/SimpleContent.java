@@ -1,4 +1,4 @@
-package net.lopymine.ms.yacl.utils;
+package net.lopymine.ms.yacl.custom.utils;
 
 import lombok.Getter;
 
