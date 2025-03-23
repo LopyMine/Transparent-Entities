@@ -16,13 +16,13 @@
     "environment": "*",
     "entrypoints": {
         "main": [
-	        "net.lopymine.ms.MoreSpace"
+	        "net.lopymine.te.TransparentEntities"
         ],
         "client": [
-	        "net.lopymine.ms.client.MoreSpaceClient"
+	        "net.lopymine.te.client.TransparentEntitiesClient"
         ],
         "modmenu": [
-	        "net.lopymine.ms.modmenu.ModMenuIntegration"
+	        "net.lopymine.te.modmenu.ModMenuIntegration"
         ]
     },
     "depends": {

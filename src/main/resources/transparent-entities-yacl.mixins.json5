@@ -1,0 +1,16 @@
+{
+	"required": true,
+	"package": "net.lopymine.te.compat.yacl.mixin",
+	"refmap": "${mod_id}.refmap.json",
+	"plugin": "net.lopymine.te.compat.yacl.YACLCompatPlugin",
+	"compatibilityLevel": "JAVA_${java}",
+	"mixins": [],
+	"client": [
+		"YetAnotherConfigLibImplBuilderMixin",
+		"YetAnotherConfigLibImplMixin",
+		"YACLScreenMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}

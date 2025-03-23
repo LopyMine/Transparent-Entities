@@ -1,5 +1,9 @@
-- Added options to enable transparency for other entities [BETA] (#3)
-- Added option to enable entity shadows hiding too
-- Fixed hiding settings, now it works properly
-- Fixed transparency elytra
-- Now the distance between you and the entity is calculated relative to the camera position
+- Fixed entities overlapping
+- Added a favorite list to prevent entities from hiding.
+
+You can add players and other entities to the favorite list with
+1) Command `/transparent-entities favorite add <entity>` 
+2) Through social interactions screen 
+3) With hotkeys
+
+- Fixed some small bugs

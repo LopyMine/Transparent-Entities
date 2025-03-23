@@ -1,0 +1,37 @@
+{
+	"required": true,
+	"package": "net.lopymine.te.mixin",
+	"refmap": "${mod_id}.refmap.json",
+	"compatibilityLevel": "JAVA_${java}",
+	"mixins": [],
+	"client": [
+		"entity.EntityRenderDispatcherMixin",
+		"fixes.GameRendererMixin",
+		"fixes.SpriteIdentifierMixin",
+		"features.LivingEntityMixin",
+		"ModelPartMixin",
+
+		//? if <=1.21.1 {
+		/*"elytra.ElytraFeatureRendererMixin",
+		"armor.ArmorFeatureRendererMixin",
+		"arrow.ProjectileEntityRendererMixin",
+		*///?}
+
+		//? if >=1.21.2 {
+		"armor.EquipmentRendererMixin",
+		//?}
+
+		"item.ItemRendererMixin",
+		"player.LivingEntityRendererMixin",
+		"player.PlayerEntityRendererMixin", // good,
+		"entity.EntityRenderDispatcherShadowMixin",
+		"block.BlockModelRendererMixin",
+		"layers.RenderLayerMixin",
+		"entity.WorldRendererMixin",
+		"layers.TexturedRenderLayersMixin",
+		"gui.SocialInteractionsPlayerListEntryMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}
