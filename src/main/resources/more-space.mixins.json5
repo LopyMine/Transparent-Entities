@@ -5,12 +5,11 @@
 	"compatibilityLevel": "JAVA_${java}",
 	"mixins": [],
 	"client": [
+		"EntityRenderDispatcherMixin",
 		"GameRendererMixin",
 		"SpriteIdentifierMixin",
 		"LivingEntityMixin",
 		"ModelPartMixin",
-		"LivingEntityRendererMixin", // good
-		"EntityRenderDispatcherMixin",
 
 		//? if <=1.21.1 {
 		/*"elytra.ElytraFeatureRendererMixin",
@@ -20,38 +19,15 @@
 
 		//? if >=1.21.2 {
 		"armor.EquipmentRendererMixin",
-		"arrow.StuckObjectsFeatureRendererMixin",
 		//?}
 
-		//? if <=1.21.3 {
-		/*"builtin.BuiltinModelItemRendererMixin",
-		"builtin.chest.ChestBlockEntityRendererMixin",
-		"builtin.conduit.ConduitBlockEntityRendererMixin",
-		*///?}
-
-		//? if >=1.21.4 {
-		"builtin.shield.ShieldModelRendererMixin",
-		"builtin.conduit.ConduitModelRendererMixin",
-		"builtin.chest.ChestModelRendererMixin",
-		"builtin.trident.TridentModelRendererMixin",
-		//?}
-
-		"armor.fabric.ArmorRendererMixin",
-		"builtin.banner.BannerBlockEntityRendererMixin",
-		"builtin.bed.BedBlockEntityRendererMixin",
-		"builtin.pot.DecoratedPotEntityRendererMixin",
-		"builtin.shulker.ShulkerBoxBlockEntityRendererMixin",
-		"cape.CapeFeatureRendererMixin",
-		"ears.Deadmau5FeatureRendererMixin",
-		"hat.SkullBlockEntityRendererMixin",
 		"item.ItemRendererMixin",
-		"parrot.ShoulderParrotFeatureRendererMixin",
 		"player.LivingEntityRendererMixin",
 		"player.PlayerEntityRendererMixin", // good,
 		"EntityRenderDispatcherShadowMixin",
-		"FeatureRendererMixin",
-		"RenderLayersMixin",
-		"BlockModelRendererMixin"
+		"BlockModelRendererMixin",
+		"RenderLayerMixin",
+		"WorldRendererMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

@@ -12,6 +12,10 @@ import net.lopymine.ms.client.MoreSpaceClient;
 import net.lopymine.ms.config.MoreSpaceConfig;
 import net.lopymine.ms.utils.ArgbUtils;
 
+import java.util.*;
+import java.util.Map.Entry;
+import java.util.stream.Collectors;
+
 public class TransparencyManager {
 
 	public static int getTranslucentArgb(Entity entity, int original) {
@@ -104,5 +108,15 @@ public class TransparencyManager {
 		float distance = TransparencyManager.calculateDistance(cameraPos, entityPos);
 
 		return (distance - hidingActivationDistance) < 0F;
+	}
+
+	public static List<Entity> sortEntitiesByDistance(List<Entity> entities) {
+		Vec3d cameraPos = MinecraftClient.getInstance().gameRenderer.getCamera().getPos();
+
+		return entities.stream()
+				.map(entity -> Map.entry(entity, calculateDistance(cameraPos, entity.getPos())))
+				.sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+				.map(Map.Entry::getKey)
+				.toList();
 	}
 }

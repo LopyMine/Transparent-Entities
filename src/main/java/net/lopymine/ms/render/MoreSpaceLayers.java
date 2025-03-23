@@ -2,12 +2,12 @@ package net.lopymine.ms.render;
 
 import net.minecraft.client.render.*;
 import net.minecraft.client.render.RenderLayer.MultiPhaseParameters;
-import net.minecraft.client.render.RenderPhase.Texture;
 import net.minecraft.client.render.VertexFormat.DrawMode;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.*;
 
 import net.lopymine.ms.client.MoreSpaceClient;
+import net.lopymine.ms.config.MoreSpaceConfig;
 import net.lopymine.ms.entity.EntityCaptures;
 
 import java.util.function.*;
@@ -50,7 +50,7 @@ public class MoreSpaceLayers {
 		return original.get();
 	}
 
-	public static RenderLayer getLayer(RenderLayer original) {
+	public static RenderLayer getItemLayer(RenderLayer original) {
 		if (canReplaceRenderLayer()) {
 			return TexturedRenderLayers.getItemEntityTranslucentCull();
 		}
@@ -72,7 +72,11 @@ public class MoreSpaceLayers {
 	}
 
 	private static boolean canReplaceRenderLayer() {
-		if (!MoreSpaceClient.getConfig().isModEnabled()) {
+		MoreSpaceConfig config = MoreSpaceClient.getConfig();
+		if (config == null) {
+			return false;
+		}
+		if (!config.isModEnabled()) {
 			return false;
 		}
 		Entity entity = EntityCaptures.MAIN.getEntity();
