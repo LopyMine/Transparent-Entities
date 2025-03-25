@@ -27,8 +27,8 @@
 
 	"${mod_id}.modmenu.option.hide_shadow_enabled.name": "Schatten ausblenden aktiviert",
 	"${mod_id}.modmenu.option.hide_shadow_enabled.description": "Wenn aktiviert, werden die Schatten von Kreaturen ebenfalls durchsichtig; wenn deaktiviert, bleiben sie sichtbar.",
-	
-	
+
+
 	"${mod_id}.modmenu.group.gameplay.name": "§lGameplay",
 	"${mod_id}.modmenu.group.gameplay.description": "Einstellungen, die das Spielgeschehen betreffen.",
 
@@ -46,7 +46,24 @@
 
 	"${mod_id}.keybinding.name": "${mod_name}",
 	"${mod_id}.keybinding.toggle_mod.name": "Mod umschalten",
+	"${mod_id}.keybinding.toggle_favorite_entity.name": "Favorisierte Kreatur umschalten",
+
+	"${mod_id}.keybinding.status.toggle_mod.true": "§a${mod_name} aktiviert",
+	"${mod_id}.keybinding.status.toggle_mod.false": "§c${mod_name} deaktiviert",
 
 	"${mod_id}.modmenu.formatter.enabled_or_disabled.true": "Aktiviert",
-	"${mod_id}.modmenu.formatter.enabled_or_disabled.false": "Deaktiviert"
+	"${mod_id}.modmenu.formatter.enabled_or_disabled.false": "Deaktiviert",
+
+	"${mod_id}.command.id": "§5§l[${mod_name}]",
+
+	"${mod_id}.command.argument.entity_data.exception.failed_parsing": "Fehler beim Parsen: %s",
+	"${mod_id}.command.argument.entity_data.exception.unknown_entity": "Unbekannte Kreatur: %s",
+
+	"${mod_id}.command.favorite_entities.add.success": "&6%s&f &awurde&f zur Favoritenliste hinzugefügt und wird nicht mehr versteckt.",
+	"${mod_id}.command.favorite_entities.add.failed": "&6%s&f ist bereits in der Favoritenliste!",
+
+	"${mod_id}.command.favorite_entities.remove.success": "&6%s&f &cwurde&f aus der Favoritenliste entfernt und wird nun versteckt.",
+	"${mod_id}.command.favorite_entities.remove.failed": "Konnte &6%s&f nicht in der Favoritenliste finden!",
+
+	"${mod_id}.gui.favorite_button.tooltip": "Fügt den Spieler zur Favoritenliste hinzu. Favorisierte Spieler und andere Kreaturen werden von der ${mod_name}-Mod nicht versteckt."
 }
