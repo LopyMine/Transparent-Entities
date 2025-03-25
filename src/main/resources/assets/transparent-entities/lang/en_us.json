@@ -27,13 +27,7 @@
 
 	"${mod_id}.modmenu.option.hide_shadow_enabled.name": "Hide Shadow Enabled",
 	"${mod_id}.modmenu.option.hide_shadow_enabled.description": "If enabled, entity's shadows will be translucent too; if disabled, won't.",
-	
-	
-	"${mod_id}.modmenu.group.gameplay.name": "§lGameplay",
-	"${mod_id}.modmenu.group.gameplay.description": "Settings related to the game part.",
 
-	"${mod_id}.modmenu.option.click_through_translucent_entities_enabled.name": "Click Through Translucent entities Enabled",
-	"${mod_id}.modmenu.option.click_through_translucent_entities_enabled.description": "If enabled, you will be able to click through translucent entity, for example, open chest; if disabled, won't.",
 
 	"${mod_id}.modmenu.category.entities.name": "§lEntities",
 

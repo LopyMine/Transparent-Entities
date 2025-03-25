@@ -28,12 +28,6 @@
 	"${mod_id}.modmenu.option.hide_shadow_enabled.description": "Если включено, тени мобов будут тоже становиться полупрозрачными; Если отключено, не будут.",
 
 
-	"${mod_id}.modmenu.group.gameplay.name": "§lИгра",
-	"${mod_id}.modmenu.group.gameplay.description": "Настройки, связанные с самой игрой.",
-
-	"${mod_id}.modmenu.option.click_through_translucent_entities_enabled.name": "Включить взаимодействие через полупрозрачных мобов",
-	"${mod_id}.modmenu.option.click_through_translucent_entities_enabled.description": "Если включено, вы сможете взаимодействовать с миром через полупрозрачных мобов. К примеру, открыть сундук; Если отключено, не сможете.",
-
 	"${mod_id}.modmenu.category.entities.name": "§lСущности",
 
 	"${mod_id}.modmenu.label.empty": " ",

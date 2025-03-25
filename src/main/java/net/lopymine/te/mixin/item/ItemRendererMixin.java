@@ -28,12 +28,17 @@ public class ItemRendererMixin {
 	private RenderLayer modifyLayer(ItemStack stack, Operation<RenderLayer> original) {
 		return TransparencyLayers.getLayer(() -> original.call(stack));
 	}
-	*///?} else {
+	*///?} elif <=1.21.4 {
 	@ModifyVariable(at = @At("HEAD"), method = "renderItem(Lnet/minecraft/item/ModelTransformationMode;Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;II[ILnet/minecraft/client/render/model/BakedModel;Lnet/minecraft/client/render/RenderLayer;Lnet/minecraft/client/render/item/ItemRenderState$Glint;)V", argsOnly = true, index = 7)
 	private static RenderLayer modifyLayer(RenderLayer value) {
 		return TransparencyLayers.getItemLayer(value);
 	}
-	//?}
+	//?} else {
+	/*@ModifyVariable(at = @At("HEAD"), method = "renderItem(Lnet/minecraft/item/ItemDisplayContext;Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;II[ILjava/util/List;Lnet/minecraft/client/render/RenderLayer;Lnet/minecraft/client/render/item/ItemRenderState$Glint;)V", argsOnly = true, index = 7)
+	private static RenderLayer modifyLayer(RenderLayer value) {
+		return TransparencyLayers.getItemLayer(value);
+	}
+	*///?}
 
 	//? if <=1.21.1 {
 	/*@WrapOperation(at = @At(value = "INVOKE", target = "Lnet/minecraft/util/math/ColorHelper$Argb;getAlpha(I)I"), method = "renderBakedItemQuads")

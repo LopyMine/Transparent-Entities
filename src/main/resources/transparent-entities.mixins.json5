@@ -8,7 +8,6 @@
 		"entity.EntityRenderDispatcherMixin",
 		"fixes.GameRendererMixin",
 		"fixes.SpriteIdentifierMixin",
-		"features.LivingEntityMixin",
 		"ModelPartMixin",
 
 		//? if <=1.21.1 {

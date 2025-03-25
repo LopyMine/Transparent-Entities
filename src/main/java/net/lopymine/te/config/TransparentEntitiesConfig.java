@@ -33,7 +33,6 @@ public class TransparentEntitiesConfig {
 			option("full_hiding_distance", 2.8F, Codec.FLOAT, TransparentEntitiesConfig::getFullHidingDistance),
 			option("min_hiding_value", 0.2F, Codec.FLOAT, TransparentEntitiesConfig::getMinHidingValue),
 			option("mod_enabled", true, Codec.BOOL, TransparentEntitiesConfig::isModEnabled),
-			option("click_through_translucent_players_enabled", false, Codec.BOOL, TransparentEntitiesConfig::isClickThroughTranslucentPlayersEnabled),
 			option("hide_shadow_enabled", true, Codec.BOOL, TransparentEntitiesConfig::isHideShadowEnabled),
 			option("hide_entities", getStandardHideEntitiesSet(), Identifier.CODEC, TransparentEntitiesConfig::getHideEntities),
 			option("favorite_entities", new HashMap<>(), Uuids.CODEC, EntityData.CODEC, TransparentEntitiesConfig::getFavoriteEntities)
@@ -47,7 +46,6 @@ public class TransparentEntitiesConfig {
 	public float fullHidingDistance;
 	public float minHidingValue;
 	private boolean modEnabled;
-	private boolean clickThroughTranslucentPlayersEnabled;
 	private boolean hideShadowEnabled;
 	private HashSet<Identifier> hideEntities;
 	private HashMap<UUID, EntityData> favoriteEntities;
@@ -57,7 +55,6 @@ public class TransparentEntitiesConfig {
 		this.fullHidingDistance                    = 2.8F;
 		this.minHidingValue                        = 0.2F;
 		this.modEnabled                            = true;
-		this.clickThroughTranslucentPlayersEnabled = false;
 		this.hideShadowEnabled                     = true;
 		this.favoriteEntities                      = new HashMap<>();
 		this.hideEntities                          = getStandardHideEntitiesSet();

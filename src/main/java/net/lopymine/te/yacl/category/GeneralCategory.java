@@ -15,7 +15,6 @@ public class GeneralCategory {
 		return SimpleCategory.startBuilder("general")
 				.groups(getMainGroup(defConfig, config))
 				.groups(getHidingGroup(defConfig, config))
-				.groups(getGameplayGroup(defConfig, config))
 				.build();
 	}
 
@@ -48,16 +47,6 @@ public class GeneralCategory {
 						.build(),
 				SimpleOption.<Boolean>startBuilder("hide_shadow_enabled")
 						.withBinding(defConfig.isHideShadowEnabled(), config::isHideShadowEnabled, config::setHideShadowEnabled, true)
-						.withController()
-						.withDescription(SimpleContent.NONE)
-						.build()
-		).build();
-	}
-
-	private static OptionGroup getGameplayGroup(TransparentEntitiesConfig defConfig, TransparentEntitiesConfig config) {
-		return SimpleGroup.startBuilder("gameplay").options(
-				SimpleOption.<Boolean>startBuilder("click_through_translucent_entities_enabled")
-						.withBinding(defConfig.isClickThroughTranslucentPlayersEnabled(), config::isClickThroughTranslucentPlayersEnabled, config::setClickThroughTranslucentPlayersEnabled, true)
 						.withController()
 						.withDescription(SimpleContent.NONE)
 						.build()

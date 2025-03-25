@@ -67,7 +67,6 @@ public class FavoriteCommands {
 		String key = String.format("favorite_entities.%s.%s", action, result);
 
 		Text text = CommandTextBuilder.startBuilder(key, name)
-				.withClickEvent(Action.COPY_TO_CLIPBOARD, uuid)
 				.build();
 
 		context.getSource().sendFeedback(text);

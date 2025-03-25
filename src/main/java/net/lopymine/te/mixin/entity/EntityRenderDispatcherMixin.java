@@ -7,7 +7,8 @@ import net.minecraft.client.render.entity.*;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.Entity;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.*;
+
 import net.lopymine.te.render.TransparencyRenderer;
 
 //? if >=1.21.2 {
@@ -17,7 +18,12 @@ import net.minecraft.client.render.entity.state.EntityRenderState;
 @Mixin(EntityRenderDispatcher.class)
 public class EntityRenderDispatcherMixin {
 
-	//? if >=1.21.2 {
+	//? if >=1.21.5 {
+	/*@WrapOperation(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/entity/EntityRenderDispatcher;render(Lnet/minecraft/client/render/entity/state/EntityRenderState;DDDLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;ILnet/minecraft/client/render/entity/EntityRenderer;)V"), method = "render(Lnet/minecraft/entity/Entity;DDDFLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;ILnet/minecraft/client/render/entity/EntityRenderer;)V")
+	private void generated(EntityRenderDispatcher instance, EntityRenderState state, double x, double y, double z, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, EntityRenderer<?, EntityRenderState> renderer, Operation<Void> original, @Local(argsOnly = true) Entity entity) {
+		TransparencyRenderer.handleEntityRendering(entity, () -> original.call(instance, state, x, y, z, matrices, vertexConsumers, light, renderer));
+	}
+	*///?} elif >=1.21.2 {
 	@SuppressWarnings("all")
 	@WrapOperation(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/entity/EntityRenderer;render(Lnet/minecraft/client/render/entity/state/EntityRenderState;Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V"), method = "render(Lnet/minecraft/entity/Entity;DDDFLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;ILnet/minecraft/client/render/entity/EntityRenderer;)V")
 	private void generated(EntityRenderer instance, EntityRenderState entityRenderState, MatrixStack matrixStack, VertexConsumerProvider provider, int i, Operation<Void> original, @Local(argsOnly = true) Entity entity) {

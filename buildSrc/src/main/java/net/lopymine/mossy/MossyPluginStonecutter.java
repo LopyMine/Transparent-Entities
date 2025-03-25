@@ -32,7 +32,6 @@ public class MossyPluginStonecutter implements Plugin<Project> {
 
 		registerConsumer.accept("chiseledPublishSpecified", (chiseledTask) -> {
 			chiseledTask.setGroup("mossy-publish");
-			chiseledTask.ofTask("publishMods");
 			List<String> publicationVersions = project.getPublicationVersions();
 			List<StonecutterProject> list = chiseledTask.getVersions()
 					.get()
@@ -40,18 +39,19 @@ public class MossyPluginStonecutter implements Plugin<Project> {
 					.filter(stonecutterProject -> publicationVersions.contains(stonecutterProject.getProject()))
 					.toList();
 			chiseledTask.getVersions().set(list);
+			chiseledTask.ofTask("publishMods");
 		});
 
 		for (StonecutterProject version : controller.getVersions()) {
 			registerConsumer.accept("chiseledBuildAndCollect+%s".formatted(version.getProject()), (chiseledTask) -> {
 				chiseledTask.setGroup("mossy-build");
-				chiseledTask.ofTask("buildAndCollect");
 				chiseledTask.getVersions().value(List.of(version));
+				chiseledTask.ofTask("buildAndCollect");
 			});
 			registerConsumer.accept("chiseledPublish+%s".formatted(version.getProject()), (chiseledTask) -> {
 				chiseledTask.setGroup("mossy-publish");
-				chiseledTask.ofTask("publishMods");
 				chiseledTask.getVersions().value(List.of(version));
+				chiseledTask.ofTask("publishMods");
 			});
 		}
 

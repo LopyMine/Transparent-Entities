@@ -2,7 +2,12 @@ package net.lopymine.te.render;
 
 import net.minecraft.client.render.*;
 import net.minecraft.client.render.RenderLayer.MultiPhaseParameters;
+//? if <=1.21.4 {
+import net.minecraft.client.render.RenderPhase.Texture;
 import net.minecraft.client.render.VertexFormat.DrawMode;
+//?} else {
+/*import net.minecraft.client.gl.RenderPipelines;
+*///?}
 import net.minecraft.entity.Entity;
 import net.minecraft.util.*;
 
@@ -20,10 +25,19 @@ import net.minecraft.client.render.entity.equipment.EquipmentModel.LayerType;
 
 public class TransparencyLayers {
 
+	private static final /*? >=1.21.2 {*/ TriState /*?} else {*/ /*boolean*/ /*?}*/ idk = /*? >=1.21.2 {*/ TriState.FALSE /*?} else {*/ /*false*/ /*?}*/;
+
+	//? if <=1.21.4 {
 	private static final Function<Identifier, RenderLayer> ITEM_ENTITY_TRANSLUCENT_NO_CULL = Util.memoize((texture) -> {
-			MultiPhaseParameters multiPhaseParameters = MultiPhaseParameters.builder().program(RenderLayer.ITEM_ENTITY_TRANSLUCENT_CULL_PROGRAM).texture(new RenderPhase.Texture(texture, /*? if >=1.21.2 {*/ TriState.FALSE /*?} else {*/ /*false *//*?}*/, false)).transparency(RenderLayer.TRANSLUCENT_TRANSPARENCY).cull(RenderLayer.DISABLE_CULLING).target(RenderLayer.ITEM_ENTITY_TARGET).lightmap(RenderLayer.ENABLE_LIGHTMAP).overlay(RenderLayer.ENABLE_OVERLAY_COLOR).writeMaskState(RenderLayer.ALL_MASK).build(true);
-			return RenderLayer.of("item_entity_translucent_no_cull", VertexFormats.POSITION_COLOR_TEXTURE_OVERLAY_LIGHT_NORMAL, DrawMode.QUADS, 1536, true, true, multiPhaseParameters);
+		MultiPhaseParameters multiPhaseParameters = MultiPhaseParameters.builder().program(RenderLayer.ITEM_ENTITY_TRANSLUCENT_CULL_PROGRAM).texture(new Texture(texture, idk, false)).transparency(RenderLayer.TRANSLUCENT_TRANSPARENCY).cull(RenderLayer.DISABLE_CULLING).target(RenderLayer.ITEM_ENTITY_TARGET).lightmap(RenderLayer.ENABLE_LIGHTMAP).overlay(RenderLayer.ENABLE_OVERLAY_COLOR).writeMaskState(RenderLayer.ALL_MASK).build(true);
+		return RenderLayer.of("item_entity_translucent_no_cull", VertexFormats.POSITION_COLOR_TEXTURE_OVERLAY_LIGHT_NORMAL, DrawMode.QUADS, 1536, true, true, multiPhaseParameters);
 	});
+	//?} else {
+	/*private static final Function<Identifier, RenderLayer> ITEM_ENTITY_TRANSLUCENT_NO_CULL = Util.memoize((texture) -> {
+		MultiPhaseParameters multiPhaseParameters = RenderLayer.MultiPhaseParameters.builder().texture(new RenderPhase.Texture(texture, TriState.FALSE, false)).target(RenderLayer.ITEM_ENTITY_TARGET).lightmap(RenderLayer.ENABLE_LIGHTMAP).overlay(RenderLayer.ENABLE_OVERLAY_COLOR).build(true);
+		return RenderLayer.of("item_entity_translucent_cull", 1536, true, true, TransparencyRenderPipelines.RENDER_TYPE_ITEM_ENTITY_TRANSLUCENT_NO_CULL, multiPhaseParameters);
+	});
+	*///?}
 
 	//? if >=1.21.2 {
 	public static RenderLayer getLayerNoCull(LayerType layerType, Identifier texture, Supplier<RenderLayer> original) {
