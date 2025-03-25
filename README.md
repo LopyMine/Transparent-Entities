@@ -7,6 +7,8 @@
 # 💬 Description
 Transparent Entities — Simple Client-Side Fabric mod which removes the annoying crowd by gradually hiding closest player and other entities.
 
+**This mod only makes entities translucent, nothing more.**
+
 ---
 ### This mod requires "*Fabulous!*" graphics settings for for a better experience!
 ---
@@ -14,14 +16,14 @@ Transparent Entities — Simple Client-Side Fabric mod which removes the annoyin
 <img src="https://cdn.modrinth.com/data/DoTHHqk4/images/6fb0570c2b7bf4dbd2cb0c8da8e452b781d4783f.gif" width="600px" alt="Showcase"/>
 
 # ⚙️ Configuration Screen
-You can also set the activation distances for hiding, full hiding and even minimum hiding level!  
+You can also set the activation distances for hiding, full hiding and even minimum hiding level!
 
-<img src="https://cdn.modrinth.com/data/cached_images/640b86eeec57d6fab740043cc71d8f8b2733d9f2.png" width="600px" alt="Showcase"/>
+<img src="https://cdn.modrinth.com/data/cached_images/8126cc7597c72f1a2a353f4444dbcdae27614eca_0.webp" width="600px" alt="Showcase"/>
 
 
 Also you can enable transparency for other entities:
 
-<img src="https://cdn.modrinth.com/data/cached_images/7cfb2bf5e4a35d0c44832007606c8dbcd053622b.png" width="600px" alt="Showcase"/>
+<img src="https://cdn.modrinth.com/data/cached_images/27d7949c37f5964355c2d0170869904089195947.png" width="600px" alt="Showcase"/>
 
 # 🌟 Favorite Entities
 You can also disable translucency for some players/entities in the world! You can do this via:

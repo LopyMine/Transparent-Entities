@@ -85,7 +85,7 @@ public class MossyPlugin implements Plugin<Project> {
 		});
 		project.getTasks().register("regenerateRunConfigurations", Delete.class, (task) -> {
 			task.setGroup("mossy");
-			task.delete(getRootFile(project, "/.idea/runConfigurations/"));
+			task.delete(getRootFile(project, ".idea/runConfigurations"));
 			task.finalizedBy("ideaSyncTask");
 		});
 		project.getTasks().register("rebuildLibs", Delete.class, task -> {
