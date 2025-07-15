@@ -1,2 +1,2 @@
-- Update to 1.21.5
-- Removed Click Through Translucent Players option
+- Updated to 1.21.6–7
+- Added option for hiding a player's head when they are wearing something

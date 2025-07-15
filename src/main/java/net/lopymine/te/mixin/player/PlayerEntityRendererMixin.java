@@ -44,7 +44,7 @@ public abstract class PlayerEntityRendererMixin extends LivingEntityRenderer<Abs
         boolean bl = stack.getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof CarvedPumpkinBlock;
 		EntityModel<?> model = this.getModel();
 		if (model instanceof PlayerEntityModel playerEntityModel) {
-			boolean visible = !((b || bl) && TransparentEntitiesClient.getConfig().isModEnabled());
+			boolean visible = !((b || bl) && TransparentEntitiesClient.getConfig().isModEnabled() && TransparentEntitiesClient.getConfig().isHideHeadWhenWearingSomething());
 			playerEntityModel.head.visible = visible;
 			playerEntityModel.hat.visible = visible;
         }

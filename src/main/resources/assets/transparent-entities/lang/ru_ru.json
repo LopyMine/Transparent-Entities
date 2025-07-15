@@ -27,6 +27,9 @@
 	"${mod_id}.modmenu.option.hide_shadow_enabled.name": "Включить скрытие тени",
 	"${mod_id}.modmenu.option.hide_shadow_enabled.description": "Если включено, тени мобов будут тоже становиться полупрозрачными; Если отключено, не будут.",
 
+	"${mod_id}.modmenu.option.hide_head_when_wearing_something.name": "Включить скрытие головы когда что-то надето",
+	"${mod_id}.modmenu.option.hide_head_when_wearing_something.description": "Если включено, мод будет скрывать головы игроков, если те носят что-нибудь на голове; Если отключено, не будет.",
+
 
 	"${mod_id}.modmenu.category.entities.name": "§lСущности",
 

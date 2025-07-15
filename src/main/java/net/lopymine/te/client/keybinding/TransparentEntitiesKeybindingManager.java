@@ -67,7 +67,7 @@ public class TransparentEntitiesKeybindingManager {
 		if (cameraEntity == null) {
 			return client.targetedEntity;
 		}
-		float tickDelta = client.getRenderTickCounter()/*? if <=1.21.4 {*/ .getTickDelta(false); /*?} else {*//*.getTickProgress(false);*//*?}*/
+		float tickDelta = client.getRenderTickCounter()/*? if <=1.21.4 {*/ /*.getTickDelta(false); *//*?} else {*/.getTickProgress(false);/*?}*/
 
 		HitResult target = client.gameRenderer.findCrosshairTarget(cameraEntity, 100D, 100D, tickDelta);
 		if (!(target instanceof EntityHitResult hitResult)) {

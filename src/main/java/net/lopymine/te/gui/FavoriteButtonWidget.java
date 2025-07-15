@@ -48,7 +48,16 @@ public class FavoriteButtonWidget extends TexturedButtonWidget {
 
 	public void renderWidget(DrawContext context, int mouseX, int mouseY, float delta) {
 		Identifier identifier = this.textures.get(this.isEnabled(), this.isHovered());
-		context.drawGuiTexture(/*? if >=1.21.2 {*/ RenderLayer::getGuiTextured,  /*?}*/identifier, this.getX(), this.getY(), this.width, this.height);
+		context.drawGuiTexture(
+				/*? if >=1.21.6 {*/ net.minecraft.client.gl.RenderPipelines.GUI_TEXTURED,
+				/*?} elif >=1.21.2 {*/ /*net.minecraft.client.render.RenderLayer::getGuiTextured,
+				 *//*?}*/
+				identifier,
+				this.getX(),
+				this.getY(),
+				this.width,
+				this.height
+		);
 	}
 
 	@Override

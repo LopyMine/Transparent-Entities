@@ -44,7 +44,6 @@ dependencies {
 test {
     useJUnitPlatform()
 }
-
 gradlePlugin {
 	plugins {
 		create(mainModuleId) {

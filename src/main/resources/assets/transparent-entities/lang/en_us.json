@@ -28,6 +28,8 @@
 	"${mod_id}.modmenu.option.hide_shadow_enabled.name": "Hide Shadow Enabled",
 	"${mod_id}.modmenu.option.hide_shadow_enabled.description": "If enabled, entity's shadows will be translucent too; if disabled, won't.",
 
+	"${mod_id}.modmenu.option.hide_head_when_wearing_something.name": "Hide Head When Wearing Something",
+	"${mod_id}.modmenu.option.hide_head_when_wearing_something.description": "If enabled, mod will hide player's heads if they are wearing something on it; if disabled, won't.",
 
 	"${mod_id}.modmenu.category.entities.name": "§lEntities",
 

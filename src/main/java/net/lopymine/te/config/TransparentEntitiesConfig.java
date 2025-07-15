@@ -34,6 +34,7 @@ public class TransparentEntitiesConfig {
 			option("min_hiding_value", 0.2F, Codec.FLOAT, TransparentEntitiesConfig::getMinHidingValue),
 			option("mod_enabled", true, Codec.BOOL, TransparentEntitiesConfig::isModEnabled),
 			option("hide_shadow_enabled", true, Codec.BOOL, TransparentEntitiesConfig::isHideShadowEnabled),
+			option("hide_head_when_wearing_something", false, Codec.BOOL, TransparentEntitiesConfig::isHideHeadWhenWearingSomething),
 			option("hide_entities", getStandardHideEntitiesSet(), Identifier.CODEC, TransparentEntitiesConfig::getHideEntities),
 			option("favorite_entities", new HashMap<>(), Uuids.CODEC, EntityData.CODEC, TransparentEntitiesConfig::getFavoriteEntities)
 	).apply(instance, TransparentEntitiesConfig::new));
@@ -47,6 +48,7 @@ public class TransparentEntitiesConfig {
 	public float minHidingValue;
 	private boolean modEnabled;
 	private boolean hideShadowEnabled;
+	private boolean hideHeadWhenWearingSomething;
 	private HashSet<Identifier> hideEntities;
 	private HashMap<UUID, EntityData> favoriteEntities;
 
@@ -56,6 +58,7 @@ public class TransparentEntitiesConfig {
 		this.minHidingValue                        = 0.2F;
 		this.modEnabled                            = true;
 		this.hideShadowEnabled                     = true;
+		this.hideHeadWhenWearingSomething          = false;
 		this.favoriteEntities                      = new HashMap<>();
 		this.hideEntities                          = getStandardHideEntitiesSet();
 	}

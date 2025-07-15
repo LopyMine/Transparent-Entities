@@ -1,6 +1,6 @@
 package net.lopymine.mossy;
 
-import dev.kikugie.stonecutter.*;
+import dev.kikugie.stonecutter.build.StonecutterBuildExtension;
 import lombok.Getter;
 import me.modmuss50.mpp.ModPublishExtension;
 import org.gradle.api.*;
@@ -16,6 +16,7 @@ import net.lopymine.mossy.multi.MultiVersion;
 import net.lopymine.mossy.tasks.*;
 
 import java.io.*;
+import java.nio.file.Files;
 import java.util.*;
 import java.util.Map.Entry;
 import org.jetbrains.annotations.NotNull;
@@ -36,6 +37,7 @@ public class MossyPlugin implements Plugin<Project> {
 		//
 
 		PluginContainer plugins = project.getPlugins();
+		plugins.apply("dev.kikugie.stonecutter");
 		plugins.apply("fabric-loom");
 		plugins.apply("me.modmuss50.mod-publish-plugin");
 		plugins.apply("dev.kikugie.j52j");
@@ -55,12 +57,12 @@ public class MossyPlugin implements Plugin<Project> {
 		MossyProcessResourcesManager.apply(project, this);
 
 		MossyDependenciesManager.apply(project);
-		MossyStonecutterManager.apply(project);
+		MossyStonecutterManager.apply(project, this);
 
 		//
 
 		MossyPlugin.configureExtensions(project, this);
-		MossyPlugin.configureTasks(project);
+		MossyPlugin.configureTasks(project, this);
 
 		LOGGER.log("Project Version: %s", project.getVersion());
 		LOGGER.log("Java Version: %s", this.javaVersionIndex);
@@ -76,7 +78,7 @@ public class MossyPlugin implements Plugin<Project> {
 		});
 	}
 
-	private static void configureTasks(@NotNull Project project) {
+	private static void configureTasks(@NotNull Project project, MossyPlugin plugin) {
 		project.getTasks().register("generatePublishWorkflowsForEachVersion", GeneratePublishWorkflowsForEachVersionTask.class, (task) -> {
 			task.setGroup("mossy");
 		});
@@ -85,7 +87,9 @@ public class MossyPlugin implements Plugin<Project> {
 		});
 		project.getTasks().register("regenerateRunConfigurations", Delete.class, (task) -> {
 			task.setGroup("mossy");
-			task.delete(getRootFile(project, ".idea/runConfigurations"));
+			String version = plugin.getProjectMultiVersion().projectVersion();
+			task.delete(getRootFile(project, ".idea/runConfigurations/Minecraft_Client___%s__%s.xml".formatted(version.replace(".", "_"), version)));
+			task.delete(getRootFile(project, ".idea/runConfigurations/Minecraft_Server___%s__%s.xml".formatted(version.replace(".", "_"), version)));
 			task.finalizedBy("ideaSyncTask");
 		});
 		project.getTasks().register("rebuildLibs", Delete.class, task -> {
@@ -129,7 +133,7 @@ public class MossyPlugin implements Plugin<Project> {
 
 	public static int getJavaVersion(Project project) {
 		String currentMCVersion = getCurrentMCVersion(project);
-		StonecutterBuild stonecutter = getStonecutter(project);
+		StonecutterBuildExtension stonecutter = getStonecutter(project);
 		return stonecutter.compare("1.20.5", currentMCVersion) == 1 ?
 				stonecutter.compare("1.18", currentMCVersion) == 1 ?
 						stonecutter.compare("1.16.5", currentMCVersion) == 1 ?
@@ -146,7 +150,7 @@ public class MossyPlugin implements Plugin<Project> {
 	public static MultiVersion getProjectMultiVersion(@NotNull Project currentProject) {
 		String currentMCVersion = getCurrentMCVersion(currentProject);
 
-		String[] versions = getProperty(currentProject, "publication_versions").split(" ");
+		String[] versions = getProperty(currentProject, "versions_specifications").split(" ");
 		for (String version : versions) {
 			String[] split = version.substring(0, version.length()-1).split("\\[");
 			String project = split[0];
@@ -174,20 +178,34 @@ public class MossyPlugin implements Plugin<Project> {
 
 	public static Properties getPersonalProperties(@NotNull Project project) {
 		File file = project.getRootProject().file("personal/personal.properties");
-		return getProperties(file);
-	}
+		Properties personalProperties = new Properties();
 
-	public static @NotNull Properties getProperties(File file) {
-		Properties properties = new Properties();
-
-		if (file.exists()) {
-			try {
-				properties.load(new FileInputStream(file));
-			} catch (Exception ignored) {
-			}
+		if (!file.exists()) {
+			return personalProperties;
 		}
 
-		return properties;
+		try (InputStream stream = new FileInputStream(file)) {
+			personalProperties.load(stream);
+		} catch (IOException e) {
+			LOGGER.log("Something went wrong when parsing personal properties:");
+			LOGGER.log(e.getMessage());
+		}
+
+		try {
+			String mixinPath = "absolute_path_to_sponge_mixin";
+
+			for (String line : Files.readAllLines(file.toPath())) {
+				if (!line.startsWith(mixinPath)) {
+					continue;
+				}
+				personalProperties.setProperty(mixinPath, line.substring(mixinPath.length() + 1));
+			}
+		} catch (Exception e) {
+			LOGGER.log("Something went wrong when parsing personal properties mixin path:");
+			LOGGER.log(e.getMessage());
+		}
+
+		return personalProperties;
 	}
 
 	public static Map<String, String> getMossyProperties(Project project, String prefix) {
@@ -210,8 +228,8 @@ public class MossyPlugin implements Plugin<Project> {
 		return getStonecutter(project).getCurrent().getProject();
 	}
 
-	public static @NotNull StonecutterBuild getStonecutter(@NotNull Project project) {
-		return (StonecutterBuild) project.getExtensions().getByName("stonecutter");
+	public static @NotNull StonecutterBuildExtension getStonecutter(@NotNull Project project) {
+		return (StonecutterBuildExtension) project.getExtensions().getByName("stonecutter");
 	}
 
 	public static String getProperty(@NotNull Project project, String id) {
@@ -226,13 +244,32 @@ public class MossyPlugin implements Plugin<Project> {
 		return getProperty(project, "multi_versions").split(" ");
 	}
 
-	public static List<String> getPublicationVersions(@NotNull Project project) {
-		return Arrays.stream(getProperty(project, "publication_versions")
+	public static List<String> getVersionsSpecifications(@NotNull Project project) {
+		return Arrays.stream(getProperty(project, "versions_specifications")
 				.split(" "))
 				.map((version) -> substringBefore(version, "["))
 				.toList();
 	}
 
+	@SuppressWarnings("unused")
+	public static String substringBeforeLast(String value, String since) {
+		int i = value.lastIndexOf(since);
+		if (i == -1) {
+			return value;
+		}
+		return value.substring(0, i);
+	}
+
+	@SuppressWarnings("unused")
+	public static String substringSinceLast(String value, String since) {
+		int i = value.lastIndexOf(since);
+		if (i == -1) {
+			return value;
+		}
+		return value.substring(i + 1);
+	}
+
+	@SuppressWarnings("unused")
 	public static String substringBefore(String value, String since) {
 		int i = value.indexOf(since);
 		if (i == -1) {
@@ -241,6 +278,7 @@ public class MossyPlugin implements Plugin<Project> {
 		return value.substring(0, i);
 	}
 
+	@SuppressWarnings("unused")
 	public static String substringSince(String value, String since) {
 		int i = value.indexOf(since);
 		if (i == -1) {

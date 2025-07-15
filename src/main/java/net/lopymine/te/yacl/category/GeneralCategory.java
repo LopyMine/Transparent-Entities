@@ -49,6 +49,11 @@ public class GeneralCategory {
 						.withBinding(defConfig.isHideShadowEnabled(), config::isHideShadowEnabled, config::setHideShadowEnabled, true)
 						.withController()
 						.withDescription(SimpleContent.NONE)
+						.build(),
+				SimpleOption.<Boolean>startBuilder("hide_head_when_wearing_something")
+						.withBinding(defConfig.isHideHeadWhenWearingSomething(), config::isHideHeadWhenWearingSomething, config::setHideHeadWhenWearingSomething, true)
+						.withController()
+						.withDescription(SimpleContent.NONE)
 						.build()
 		).build();
 	}

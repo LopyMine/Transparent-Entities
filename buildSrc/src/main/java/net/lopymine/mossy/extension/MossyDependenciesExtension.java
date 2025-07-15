@@ -1,7 +1,8 @@
 package net.lopymine.mossy.extension;
 
 import lombok.Getter;
-import org.gradle.api.tasks.Input;
+import org.gradle.api.Action;
+import org.gradle.api.tasks.*;
 
 @Getter
 public class MossyDependenciesExtension {
@@ -20,4 +21,11 @@ public class MossyDependenciesExtension {
 
 	@Input
 	String lombok;
+
+	@Nested
+	MossyAdditionalDependencies additional = new MossyAdditionalDependencies();
+
+	public void additional(Action<MossyAdditionalDependencies> action) {
+		action.execute(this.additional);
+	}
 }
