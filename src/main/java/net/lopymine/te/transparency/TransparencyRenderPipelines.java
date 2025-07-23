@@ -1,4 +1,4 @@
-package net.lopymine.te.render;
+package net.lopymine.te.transparency;
 
 //? if >=1.21.5 {
 import net.minecraft.client.gl.RenderPipelines;
@@ -15,10 +15,10 @@ public class TransparencyRenderPipelines {
 	public static final RenderPipeline RENDER_TYPE_ITEM_ENTITY_TRANSLUCENT_NO_CULL =
 			RenderPipeline.builder(
 					//? if >=1.21.6 {
-					net.minecraft.client.gl.RenderPipelines.TRANSFORMS_PROJECTION_FOG_LIGHTING_SNIPPET
-					//?} elif =1.21.5 {
-					/*net.minecraft.client.gl.RenderPipelines.MATRICES_COLOR_FOG_LIGHT_DIR_SNIPPET
-	                *///?}
+					/*net.minecraft.client.gl.RenderPipelines.TRANSFORMS_PROJECTION_FOG_LIGHTING_SNIPPET
+					*///?} elif =1.21.5 {
+					net.minecraft.client.gl.RenderPipelines.MATRICES_COLOR_FOG_LIGHT_DIR_SNIPPET
+	                //?}
 					).withLocation("pipeline/item_entity_translucent_cull")
 					.withVertexShader("core/rendertype_item_entity_translucent_cull")
 					.withFragmentShader("core/rendertype_item_entity_translucent_cull")

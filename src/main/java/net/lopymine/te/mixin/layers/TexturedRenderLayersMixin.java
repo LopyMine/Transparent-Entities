@@ -5,7 +5,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import net.lopymine.te.render.TransparencyLayers;
+import net.lopymine.te.transparency.TransparencyLayers;
 
 @Mixin(TexturedRenderLayers.class)
 public class TexturedRenderLayersMixin {
@@ -15,7 +15,7 @@ public class TexturedRenderLayersMixin {
 			"getEntitySolid"
 	}, cancellable = true)
 	private static void swapRenderLayer(CallbackInfoReturnable<RenderLayer> cir) {
-		cir.setReturnValue(TransparencyLayers.getLayer(cir::getReturnValue));
+		cir.setReturnValue(TransparencyLayers.getItemLayer(cir::getReturnValue));
 	}
 
 }

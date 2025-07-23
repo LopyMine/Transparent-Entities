@@ -17,7 +17,7 @@ public class YACLConfigurationScreen {
 	}
 
 	public static Screen createScreen(Screen parent) {
-		TransparentEntitiesConfig defConfig = new TransparentEntitiesConfig();
+		TransparentEntitiesConfig defConfig = TransparentEntitiesConfig.getNewInstance();
 		TransparentEntitiesConfig config = TransparentEntitiesClient.getConfig();
 
 		return SimpleYACLScreen.startBuilder(parent, config::save)

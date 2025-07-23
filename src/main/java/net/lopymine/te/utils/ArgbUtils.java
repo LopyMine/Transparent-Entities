@@ -1,6 +1,5 @@
 package net.lopymine.te.utils;
 
-
 public class ArgbUtils {
 
 	public static int swapAlpha(int argb, int alpha) {

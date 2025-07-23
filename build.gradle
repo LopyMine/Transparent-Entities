@@ -8,6 +8,12 @@ mossyDependencies {
 	lombok = prop("base.lombok_version")
 	fabricApi = prop("build.fabric_api")
 	fabricLoader = prop("build.fabric_loader")
+
+	additional {
+
+		//override("modCompileOnly", "sodium")
+
+	}
 }
 
 mossyResources {

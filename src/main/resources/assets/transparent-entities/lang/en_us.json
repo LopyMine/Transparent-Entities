@@ -16,11 +16,17 @@
 	"${mod_id}.modmenu.group.hiding.name": "§lHiding",
 	"${mod_id}.modmenu.group.hiding.description": "Settings that control the power of entities translucent.",
 
-	"${mod_id}.modmenu.option.hiding_activation_distance.name": "Hiding Activation Distance",
-	"${mod_id}.modmenu.option.hiding_activation_distance.description": "The distance at which the entity will start to become translucent.\n\nThe closer entity is to you, the more transparent he will be!",
+	"${mod_id}.modmenu.option.hiding_activation_distance_xz.name": "Hiding Activation Distance By XZ",
+	"${mod_id}.modmenu.option.hiding_activation_distance_xz.description": "The distance by X and Z at which the entity will start to become translucent.\n\nThe closer entity is to you, the more transparent he will be!",
 
-	"${mod_id}.modmenu.option.full_hiding_distance.name": "Full Hiding Distance",
-	"${mod_id}.modmenu.option.full_hiding_distance.description": "The distance at which the entity will be completely translucent.",
+	"${mod_id}.modmenu.option.full_hiding_distance_xz.name": "Full Hiding Distance By XZ",
+	"${mod_id}.modmenu.option.full_hiding_distance_xz.description": "The distance by X and Z axis at which the entity will be completely translucent.",
+
+	"${mod_id}.modmenu.option.hiding_activation_distance_y.name": "Hiding Activation Distance By Y",
+	"${mod_id}.modmenu.option.hiding_activation_distance_y.description": "The distance by Y axis at which the entity will start to become translucent.\n\nThe closer entity is to you, the more transparent he will be!",
+
+	"${mod_id}.modmenu.option.full_hiding_distance_y.name": "Full Hiding Distance By Y",
+	"${mod_id}.modmenu.option.full_hiding_distance_y.description": "The distance by Y axis at which the entity will be completely translucent.",
 
 	"${mod_id}.modmenu.option.min_hiding_value.name": "Min Hiding Value",
 	"${mod_id}.modmenu.option.min_hiding_value.description": "The minimum transparency value of the entity.",
@@ -39,6 +45,10 @@
 
 	"${mod_id}.modmenu.option.hide_entity.name": "Hide %s",
 	"${mod_id}.modmenu.option.hide_entity.description": "If enabled, %s will be translucent; if disabled, won't.",
+
+	"${mod_id}.custom_entities.particles": "Particles",
+	"${mod_id}.custom_entities.entity_name": "Entity's Name",
+
 
 	"${mod_id}.keybinding.name": "${mod_name}",
 	"${mod_id}.keybinding.toggle_mod.name": "Toggle Mod",

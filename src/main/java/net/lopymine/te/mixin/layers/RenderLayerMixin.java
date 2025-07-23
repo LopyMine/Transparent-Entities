@@ -1,12 +1,11 @@
 package net.lopymine.te.mixin.layers;
 
+import net.lopymine.te.transparency.*;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.util.Identifier;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-
-import net.lopymine.te.render.TransparencyLayers;
 
 @Mixin(RenderLayer.class)
 public class RenderLayerMixin {
@@ -29,8 +28,17 @@ public class RenderLayerMixin {
 			"getEntityTranslucent(Lnet/minecraft/util/Identifier;Z)Lnet/minecraft/client/render/RenderLayer;",
 			"getEntityTranslucentEmissive(Lnet/minecraft/util/Identifier;Z)Lnet/minecraft/client/render/RenderLayer;"
 	}, cancellable = true)
-	private static void swapRenderLayerBl(Identifier texture, boolean affectsOutline, CallbackInfoReturnable<RenderLayer> cir) {
+	private static void swapRenderLayerWithBoolean(Identifier texture, boolean affectsOutline, CallbackInfoReturnable<RenderLayer> cir) {
 		cir.setReturnValue(TransparencyLayers.getLayer(texture, cir::getReturnValue));
 	}
+
+	//? if >=1.21.5 {
+	@Inject(at = @At("RETURN"), method = {
+			"getOpaqueParticle"
+	}, cancellable = true)
+	private static void swapParticleRenderLayer(Identifier texture, CallbackInfoReturnable<RenderLayer> cir) {
+		cir.setReturnValue(TransparencyLayers.getLayer(texture, cir::getReturnValue));
+	}
+	//?}
 
 }

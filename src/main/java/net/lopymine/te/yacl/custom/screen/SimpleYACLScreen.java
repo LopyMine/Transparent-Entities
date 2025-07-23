@@ -17,7 +17,7 @@ public class SimpleYACLScreen {
 	private final Screen parent;
 
 	public SimpleYACLScreen(Screen parent, Runnable onSave, Consumer<YACLScreen> onInit) {
-		this.builder = BetterYACLScreenBuilder.startBuilder()
+		this.builder = YetAnotherConfigLib.createBuilder()
 				.title(ModMenuUtils.getModTitle())
 				.save(onSave)
 				.screenInit(onInit);

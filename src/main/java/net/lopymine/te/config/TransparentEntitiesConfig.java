@@ -2,6 +2,9 @@ package net.lopymine.te.config;
 
 import com.google.gson.*;
 import lombok.*;
+import net.lopymine.te.config.distance.TransparencyDistance;
+import net.lopymine.te.config.entity.*;
+import net.lopymine.te.utils.CodecUtils;
 import net.minecraft.entity.EntityType;
 import net.minecraft.registry.Registries;
 import net.minecraft.util.*;
@@ -28,10 +31,12 @@ import static net.lopymine.te.utils.CodecUtils.option;
 @AllArgsConstructor
 public class TransparentEntitiesConfig {
 
+	public static final EntityIdentifier PARTICLES_ID = CustomEntityIdentifier.of("particles");
+	public static final EntityIdentifier ENTITY_NAME_ID = CustomEntityIdentifier.of("entity_name");
+
 	public static final Codec<TransparentEntitiesConfig> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-			option("hiding_activation_distance", 4.0F, Codec.FLOAT, TransparentEntitiesConfig::getHidingActivationDistance),
-			option("full_hiding_distance", 2.8F, Codec.FLOAT, TransparentEntitiesConfig::getFullHidingDistance),
-			option("min_hiding_value", 0.2F, Codec.FLOAT, TransparentEntitiesConfig::getMinHidingValue),
+			option("transparency_distance", TransparencyDistance.getNewInstance(), TransparencyDistance.CODEC, TransparentEntitiesConfig::getTransparencyDistance),
+			option("min_hiding_value", 0.2D, Codec.DOUBLE, TransparentEntitiesConfig::getMinHidingValue),
 			option("mod_enabled", true, Codec.BOOL, TransparentEntitiesConfig::isModEnabled),
 			option("hide_shadow_enabled", true, Codec.BOOL, TransparentEntitiesConfig::isHideShadowEnabled),
 			option("hide_head_when_wearing_something", false, Codec.BOOL, TransparentEntitiesConfig::isHideHeadWhenWearingSomething),
@@ -43,25 +48,13 @@ public class TransparentEntitiesConfig {
 	private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 	private static final Logger LOGGER = LoggerFactory.getLogger(TransparentEntities.MOD_NAME + "/Config");
 
-	public float hidingActivationDistance;
-	public float fullHidingDistance;
-	public float minHidingValue;
+	public TransparencyDistance transparencyDistance;
+	public double minHidingValue;
 	private boolean modEnabled;
 	private boolean hideShadowEnabled;
 	private boolean hideHeadWhenWearingSomething;
 	private HashSet<Identifier> hideEntities;
 	private HashMap<UUID, EntityData> favoriteEntities;
-
-	public TransparentEntitiesConfig() {
-		this.hidingActivationDistance              = 4.0F;
-		this.fullHidingDistance                    = 2.8F;
-		this.minHidingValue                        = 0.2F;
-		this.modEnabled                            = true;
-		this.hideShadowEnabled                     = true;
-		this.hideHeadWhenWearingSomething          = false;
-		this.favoriteEntities                      = new HashMap<>();
-		this.hideEntities                          = getStandardHideEntitiesSet();
-	}
 
 	private static HashSet<Identifier> getStandardHideEntitiesSet() {
 		HashSet<Identifier> identifiers = new HashSet<>();
@@ -69,12 +62,16 @@ public class TransparentEntitiesConfig {
 		return identifiers;
 	}
 
+	public static TransparentEntitiesConfig getNewInstance() {
+		return CodecUtils.parseNewInstanceHacky(CODEC);
+	}
+
 	public static TransparentEntitiesConfig getInstance() {
 		return TransparentEntitiesConfig.read();
 	}
 
 	private static @NotNull TransparentEntitiesConfig create() {
-		TransparentEntitiesConfig config = new TransparentEntitiesConfig();
+		TransparentEntitiesConfig config = TransparentEntitiesConfig.getNewInstance();
 		try (FileWriter writer = new FileWriter(CONFIG_FILE, StandardCharsets.UTF_8)) {
 			String json = GSON.toJson(CODEC.encode(config, JsonOps.INSTANCE, JsonOps.INSTANCE.empty())/*? if >=1.20.5 {*/.getOrThrow());/*?} else*//*.getOrThrow(false, LOGGER::error));*/
 			writer.write(json);
@@ -90,7 +87,32 @@ public class TransparentEntitiesConfig {
 		}
 
 		try (FileReader reader = new FileReader(CONFIG_FILE, StandardCharsets.UTF_8)) {
-			return CODEC.decode(JsonOps.INSTANCE, JsonParser.parseReader(reader))/*? if >=1.20.5 {*/.getOrThrow()/*?} else {*//*.getOrThrow(false, LOGGER::error)*//*?}*/.getFirst();
+
+			Float fullHidingDistance = null;
+			Float hidingActivationDistance = null;
+			JsonElement jsonElement = JsonParser.parseReader(reader);
+			if (jsonElement.isJsonObject()) {
+				JsonObject object = jsonElement.getAsJsonObject();
+				if (object.has("full_hiding_distance")) {
+					fullHidingDistance = object.get("full_hiding_distance").getAsFloat();
+				}
+				if (object.has("hiding_activation_distance")) {
+					hidingActivationDistance = object.get("hiding_activation_distance").getAsFloat();
+				}
+			}
+			TransparentEntitiesConfig config = CODEC.decode(JsonOps.INSTANCE, jsonElement)/*? if >=1.20.5 {*/.getOrThrow()/*?} else {*//*.getOrThrow(false, LOGGER::error)*//*?}*/.getFirst();
+
+			TransparencyDistance distance = config.getTransparencyDistance();
+			if (fullHidingDistance != null) {
+				distance.setFullHidingDistanceXZ(fullHidingDistance);
+				distance.setFullHidingDistanceY(fullHidingDistance);
+			}
+			if (hidingActivationDistance != null) {
+				distance.setHidingActivationDistanceXZ(hidingActivationDistance);
+				distance.setHidingActivationDistanceY(hidingActivationDistance);
+			}
+
+			return config;
 		} catch (Exception e) {
 			LOGGER.error("Failed to read config", e);
 		}

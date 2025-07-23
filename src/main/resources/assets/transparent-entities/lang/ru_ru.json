@@ -40,6 +40,10 @@
 	"${mod_id}.modmenu.option.hide_entity.name": "Скрывать %s",
 	"${mod_id}.modmenu.option.hide_entity.description": "Если включено, %s будет становиться полупрозрачным; Если отключено, не будет.",
 
+	"${mod_id}.custom_entities.particles": "Частицы",
+	"${mod_id}.custom_entities.entity_name": "Имя сущности",
+
+
 	"${mod_id}.keybinding.name": "${mod_name}",
 	"${mod_id}.keybinding.toggle_mod.name": "Включить/Выключить мод",
 	"${mod_id}.keybinding.toggle_favorite_entity.name": "Добавить/удалить избранную сущность",

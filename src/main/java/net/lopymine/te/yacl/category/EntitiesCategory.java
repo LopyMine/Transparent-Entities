@@ -2,8 +2,10 @@ package net.lopymine.te.yacl.category;
 
 import dev.isxander.yacl3.api.*;
 import lombok.experimental.ExtensionMethod;
+import net.lopymine.te.config.entity.EntityIdentifier;
 import net.minecraft.entity.*;
 import net.minecraft.registry.*;
+import net.minecraft.text.Text;
 import net.minecraft.util.*;
 
 import net.lopymine.te.TransparentEntities;
@@ -39,28 +41,41 @@ public class EntitiesCategory {
 			Identifier id = entry.getKey().getValue();
 			EntityType<?> entityType = entry.getValue();
 
-			Option<Boolean> option = SimpleOption.<Boolean>startBuilder("hide_entity")
-					.withBinding(defHideEntities.contains(id), () -> hideEntities.contains(id), (bl) -> {
-						if (bl) {
-							hideEntities.add(id);
-						} else {
-							hideEntities.remove(id);
-						}
-					}, true)
-					.withController()
-					.getOptionBuilder()
-					.name(TransparentEntities.text("modmenu.option.hide_entity.name", entityType.getName()))
-					.description(
-							OptionDescription.createBuilder()
-								.text(TransparentEntities.text("modmenu.option.hide_entity.description", entityType.getName()))
-								.build()
-					)
-					.build();
-
-			simpleCategory.options(option);
+			addEntityOption(defHideEntities, hideEntities, id, entityType.getName(), simpleCategory);
 		}
 
+		addEntityOption(defHideEntities, hideEntities, TransparentEntitiesConfig.PARTICLES_ID, simpleCategory);
+		addEntityOption(defHideEntities, hideEntities, TransparentEntitiesConfig.ENTITY_NAME_ID, simpleCategory);
+
 		return simpleCategory.build();
+	}
+
+	private static void addEntityOption(HashSet<Identifier> defHideEntities, HashSet<Identifier> hideEntities, Identifier id, Text name, SimpleCategory simpleCategory) {
+		addEntityOption(defHideEntities, hideEntities, EntityIdentifier.of(id, name), simpleCategory);
+	}
+
+	private static void addEntityOption(HashSet<Identifier> defHideEntities, HashSet<Identifier> hideEntities, EntityIdentifier entityIdentifier, SimpleCategory simpleCategory) {
+		Identifier identifier = entityIdentifier.id();
+
+		Option<Boolean> option = SimpleOption.<Boolean>startBuilder("hide_entity")
+				.withBinding(defHideEntities.contains(identifier), () -> hideEntities.contains(identifier), (bl) -> {
+					if (bl) {
+						hideEntities.add(identifier);
+					} else {
+						hideEntities.remove(identifier);
+					}
+				}, true)
+				.withController()
+				.getOptionBuilder()
+				.name(TransparentEntities.text("modmenu.option.hide_entity.name", entityIdentifier.name()))
+				.description(
+						OptionDescription.createBuilder()
+							.text(TransparentEntities.text("modmenu.option.hide_entity.description", entityIdentifier.name()))
+							.build()
+				)
+				.build();
+
+		simpleCategory.options(option);
 	}
 
 }

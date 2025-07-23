@@ -8,7 +8,7 @@ import net.minecraft.util.Identifier;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.*;
 
-import net.lopymine.te.render.TransparencyLayers;
+import net.lopymine.te.transparency.TransparencyLayers;
 
 @Mixin(ArmorFeatureRenderer.class)
 public class ArmorFeatureRendererMixin {

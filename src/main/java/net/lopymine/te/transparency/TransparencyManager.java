@@ -1,7 +1,11 @@
-package net.lopymine.te.render;
+package net.lopymine.te.transparency;
 
+import net.lopymine.te.config.distance.TransparencyDistance;
+import net.lopymine.te.config.distance.TransparencyDistance.Distance;
+import net.lopymine.te.thing.*;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.client.particle.Particle;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.*;
@@ -16,47 +20,30 @@ import java.util.*;
 
 public class TransparencyManager {
 
-	public static int getTranslucentArgb(Entity entity, int original) {
-		if (!TransparentEntitiesClient.getConfig().isModEnabled()) {
-			return original;
+	public static int getArgbColorFromAnyCapturedThing(int originalArgb) {
+		Entity entity = ThingCaptures.CURRENT_RENDERING_ENTITY.get();
+		Particle particle = ThingCaptures.CURRENT_RENDERING_PARTICLE.get();
+		if (entity != null) {
+			return ThingCaptures.CURRENT_RENDERING_ENTITY.getArgbColor(entity, originalArgb);
+		} else if (particle != null) {
+			return ThingCaptures.CURRENT_RENDERING_PARTICLE.getArgbColor(particle, originalArgb);
 		}
-
-		MinecraftClient client = MinecraftClient.getInstance();
-		ClientPlayerEntity player = client.player;
-		ClientWorld world = client.world;
-		Vec3d cameraPos = client.gameRenderer.getCamera().getPos();
-		Vec3d entityPos = entity.getPos();
-
-		if (player == null || world == null) {
-			return original;
-		}
-
-		if (player.equals(entity)) {
-			return getColorForYourself(original);
-		}
-
-		if (entity.isInvisibleTo(player)) {
-			return original;
-		}
-
-		// player teammate check
-
-		return ArgbUtils.swapAlpha(original, getAlpha(cameraPos, entityPos));
+		return originalArgb;
 	}
 
-	private static int getAlpha(Vec3d cameraPos, Vec3d entityPos) {
+	public static int getAlpha(Vec3d cameraPos, Vec3d thingPos) {
 		TransparentEntitiesConfig config = TransparentEntitiesClient.getConfig();
-		float hidingActivationDistance = config.getHidingActivationDistance();
-		float fullHidingDistance = config.getFullHidingDistance();
-		float minHidingValue = config.getMinHidingValue();
-		float distance = calculateDistance(cameraPos, entityPos);
+		TransparencyDistance transparencyDistance = config.getTransparencyDistance();
+		double minHidingValue = config.getMinHidingValue();
 
-		if (hidingActivationDistance <= 0F) {
+		Distance distance = transparencyDistance.getDistance(cameraPos, thingPos);
+
+		if (distance.hidingActivationDistance() <= 0F) {
 			return 255;
 		}
 
-		float a = hidingActivationDistance - fullHidingDistance;
-		float b = distance - fullHidingDistance;
+		double a = distance.hidingActivationDistance() - distance.fullHidingDistance();
+		double b = distance.distance() - distance.fullHidingDistance();
 
 		if (a <= 0F || b <= 0F) {
 			return (int) (minHidingValue * 255F);
@@ -69,7 +56,7 @@ public class TransparencyManager {
 		return (int) (Math.clamp((minHidingValue + ((1F - minHidingValue) * (b / a))), 0F, 1F) * 255F);
 	}
 
-	private static int getColorForYourself(int original) {
+	public static int getColorForYourself(int original) {
 		if (FabricLoader.getInstance().isDevelopmentEnvironment()) {
 			return ArgbUtils.swapAlpha(original, (int) (255F * TransparentEntitiesClient.getConfig().minHidingValue));
 		}
@@ -84,7 +71,8 @@ public class TransparencyManager {
 	}
 
 	public static boolean isTransparency(Entity entity) {
-		if (!TransparentEntitiesClient.getConfig().isModEnabled()) {
+		TransparentEntitiesConfig config = TransparentEntitiesClient.getConfig();
+		if (!config.isModEnabled()) {
 			return false;
 		}
 
@@ -102,10 +90,10 @@ public class TransparencyManager {
 			return ArgbUtils.getAlpha(getColorForYourself(-1)) != 255;
 		}
 
-		float hidingActivationDistance = TransparentEntitiesClient.getConfig().hidingActivationDistance;
-		float distance = TransparencyManager.calculateDistance(cameraPos, entityPos);
+		TransparencyDistance transparencyDistance = config.getTransparencyDistance();
+		Distance distance = transparencyDistance.getDistance(cameraPos, entityPos);
 
-		return (distance - hidingActivationDistance) < 0F;
+		return (distance.distance() - distance.hidingActivationDistance()) < 0F;
 	}
 
 	public static List<Entity> sortEntitiesByDistance(List<Entity> entities) {

@@ -13,7 +13,7 @@ import net.lopymine.te.config.TransparentEntitiesConfig;
 
 public class TransparentEntitiesClient implements ClientModInitializer {
 
-	public static Logger LOGGER = LoggerFactory.getLogger(TransparentEntities.MOD_NAME + "/Client");
+	public static final Logger LOGGER = LoggerFactory.getLogger(TransparentEntities.MOD_NAME + "/Client");
 
 	@Setter
 	@Getter

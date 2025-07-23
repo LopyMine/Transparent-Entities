@@ -10,7 +10,7 @@ import com.llamalad7.mixinextras.injector.wrapoperation.*;
 import net.minecraft.client.render.*;
 import org.spongepowered.asm.mixin.injection.*;
 
-import net.lopymine.te.render.TransparencyLayers;
+import net.lopymine.te.transparency.TransparencyLayers;
 
 //? if >=1.21.4 {
 import net.minecraft.client.render.entity.equipment.EquipmentModel.LayerType;

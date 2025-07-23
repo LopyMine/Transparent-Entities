@@ -4,6 +4,7 @@ import dev.isxander.yacl3.api.*;
 import lombok.experimental.ExtensionMethod;
 
 import net.lopymine.te.config.TransparentEntitiesConfig;
+import net.lopymine.te.config.distance.TransparencyDistance;
 import net.lopymine.te.yacl.custom.base.*;
 import net.lopymine.te.yacl.custom.extension.SimpleOptionExtension;
 import net.lopymine.te.yacl.custom.utils.SimpleContent;
@@ -29,20 +30,32 @@ public class GeneralCategory {
 	}
 
 	private static OptionGroup getHidingGroup(TransparentEntitiesConfig defConfig, TransparentEntitiesConfig config) {
+		TransparencyDistance defDistance = defConfig.getTransparencyDistance();
+		TransparencyDistance distance = config.getTransparencyDistance();
 		return SimpleGroup.startBuilder("hiding").options(
-				SimpleOption.<Float>startBuilder("hiding_activation_distance")
-						.withBinding(defConfig.getHidingActivationDistance(), config::getHidingActivationDistance, config::setHidingActivationDistance, true)
-						.withController(0.0F, 32.0F, 0.1F)
+				SimpleOption.<Double>startBuilder("hiding_activation_distance_xz")
+						.withBinding(defDistance.getHidingActivationDistanceXZ(), distance::getHidingActivationDistanceXZ, distance::setHidingActivationDistanceXZ, true)
+						.withController(0.0D, 32.0D, 0.1D)
 						.withDescription(SimpleContent.NONE)
 						.build(),
-				SimpleOption.<Float>startBuilder("full_hiding_distance")
-						.withBinding(defConfig.getFullHidingDistance(), config::getFullHidingDistance, config::setFullHidingDistance, true)
-						.withController(0.0F, 32.0F, 0.1F)
+				SimpleOption.<Double>startBuilder("hiding_activation_distance_y")
+						.withBinding(defDistance.getHidingActivationDistanceY(), distance::getHidingActivationDistanceY, distance::setHidingActivationDistanceY, true)
+						.withController(0.0D, 32.0D, 0.1D)
 						.withDescription(SimpleContent.NONE)
 						.build(),
-				SimpleOption.<Float>startBuilder("min_hiding_value")
+				SimpleOption.<Double>startBuilder("full_hiding_distance_xz")
+						.withBinding(defDistance.getFullHidingDistanceXZ(), distance::getFullHidingDistanceXZ, distance::setFullHidingDistanceXZ, true)
+						.withController(0.0D, 32.0D, 0.1D)
+						.withDescription(SimpleContent.NONE)
+						.build(),
+				SimpleOption.<Double>startBuilder("full_hiding_distance_y")
+						.withBinding(defDistance.getFullHidingDistanceY(), distance::getFullHidingDistanceY, distance::setFullHidingDistanceY, true)
+						.withController(0.0D, 32.0D, 0.1D)
+						.withDescription(SimpleContent.NONE)
+						.build(),
+				SimpleOption.<Double>startBuilder("min_hiding_value")
 						.withBinding(defConfig.getMinHidingValue(), config::getMinHidingValue, config::setMinHidingValue, true)
-						.withController(0.0F, 1.0F, 0.1F)
+						.withController(0.10D, 1.0D, 0.01D)
 						.withDescription(SimpleContent.NONE)
 						.build(),
 				SimpleOption.<Boolean>startBuilder("hide_shadow_enabled")

@@ -10,7 +10,9 @@ import net.minecraft.entity.Entity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
-import net.lopymine.te.render.TransparencyManager;
+import net.lopymine.te.transparency.TransparencyManager;
+import net.lopymine.te.transparency.TransparencyLayers;
+import net.lopymine.te.thing.ThingCaptures;
 
 import java.util.*;
 import java.util.stream.*;

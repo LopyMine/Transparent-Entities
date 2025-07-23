@@ -16,9 +16,9 @@ import net.lopymine.te.client.TransparentEntitiesClient;
 
 //? >=1.21.2 {
 import net.minecraft.client.render.entity.state.PlayerEntityRenderState;
-import net.lopymine.te.render.TransparencyManager;
-import net.lopymine.te.render.TransparencyLayers;
-import net.lopymine.te.entity.EntityCaptures;
+import net.lopymine.te.transparency.TransparencyManager;
+import net.lopymine.te.transparency.TransparencyLayers;
+import net.lopymine.te.thing.ThingCaptures;
 //?}
 
 @Mixin(PlayerEntityRenderer.class)

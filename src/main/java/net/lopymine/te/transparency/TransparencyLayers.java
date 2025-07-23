@@ -1,20 +1,19 @@
-package net.lopymine.te.render;
+package net.lopymine.te.transparency;
 
 import net.minecraft.client.render.*;
 import net.minecraft.client.render.RenderLayer.MultiPhaseParameters;
+import net.minecraft.client.render.RenderPhase.Texture;
 //? if <=1.21.4 {
-/*import net.minecraft.client.render.RenderPhase.Texture;
-import net.minecraft.client.render.VertexFormat.DrawMode;
+/*import net.minecraft.client.render.VertexFormat.DrawMode;
 *///?} else {
 import net.minecraft.client.gl.RenderPipelines;
 //?}
-import net.minecraft.client.render.RenderPhase.Texture;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.*;
 
 import net.lopymine.te.client.TransparentEntitiesClient;
 import net.lopymine.te.config.TransparentEntitiesConfig;
-import net.lopymine.te.entity.EntityCaptures;
+import net.lopymine.te.thing.ThingCaptures;
 
 import java.util.function.*;
 
@@ -26,7 +25,7 @@ import net.minecraft.client.render.entity.equipment.EquipmentModel.LayerType;
 
 public class TransparencyLayers {
 
-	private static final /*? >=1.21.2 {*/ TriState /*?} else {*/ /*boolean*/ /*?}*/ idk = /*? >=1.21.2 {*/ TriState.FALSE /*?} else {*/ /*false*/ /*?}*/;
+	private static final /*? >=1.21.2 {*/ TriState /*?} else {*/ /*boolean *//*?}*/ idk = /*? >=1.21.2 {*/ TriState.FALSE /*?} else {*/ /*false *//*?}*/;
 
 	//? if <=1.21.4 {
 	/*private static final Function<Identifier, RenderLayer> ITEM_ENTITY_TRANSLUCENT_NO_CULL = Util.memoize((texture) -> {
@@ -35,8 +34,8 @@ public class TransparencyLayers {
 	});
 	*///?} else {
 	private static final Function<Identifier, RenderLayer> ITEM_ENTITY_TRANSLUCENT_NO_CULL = Util.memoize((texture) -> {
-		MultiPhaseParameters multiPhaseParameters = MultiPhaseParameters.builder().texture(new Texture(texture, /*? if <=1.21.5 {*//*TriState.FALSE,*//*?}*/ false)).target(RenderLayer.ITEM_ENTITY_TARGET).lightmap(RenderLayer.ENABLE_LIGHTMAP).overlay(RenderLayer.ENABLE_OVERLAY_COLOR).build(true);
-		return RenderLayer.of("item_entity_translucent_cull", 1536, true, true, TransparencyRenderPipelines.RENDER_TYPE_ITEM_ENTITY_TRANSLUCENT_NO_CULL, multiPhaseParameters);
+		MultiPhaseParameters multiPhaseParameters = MultiPhaseParameters.builder().texture(new Texture(texture, /*? if <=1.21.5 {*/TriState.FALSE,/*?}*/ false)).target(RenderLayer.ITEM_ENTITY_TARGET).lightmap(RenderLayer.ENABLE_LIGHTMAP).overlay(RenderLayer.ENABLE_OVERLAY_COLOR).build(true);
+		return RenderLayer.of("item_entity_translucent_no_cull", 1536, true, true, TransparencyRenderPipelines.RENDER_TYPE_ITEM_ENTITY_TRANSLUCENT_NO_CULL, multiPhaseParameters);
 	});
 	//?}
 
@@ -60,6 +59,15 @@ public class TransparencyLayers {
 	}
 	*///?}
 
+	//? if >=1.21.5 {
+	public static RenderLayer getParticleLayer(Identifier texture, Supplier<RenderLayer> original) {
+		if (canReplaceRenderLayer()) {
+			return RenderLayer.getTranslucentParticle(texture);
+		}
+		return original.get();
+	}
+	//?}
+
 	public static RenderLayer getLayer(Identifier texture, Supplier<RenderLayer> original) {
 		if (canReplaceRenderLayer()) {
 			return RenderLayer.getItemEntityTranslucentCull(texture);
@@ -74,7 +82,7 @@ public class TransparencyLayers {
 		return original;
 	}
 
-	public static RenderLayer getLayer(Supplier<RenderLayer> original) {
+	public static RenderLayer getItemLayer(Supplier<RenderLayer> original) {
 		if (canReplaceRenderLayer()) {
 			return TexturedRenderLayers.getItemEntityTranslucentCull();
 		}
@@ -89,7 +97,7 @@ public class TransparencyLayers {
 		if (!config.isModEnabled()) {
 			return false;
 		}
-		Entity entity = EntityCaptures.MAIN.getEntity();
+		Entity entity = ThingCaptures.CURRENT_RENDERING_ENTITY.get();
 		if (entity == null) {
 			return false;
 		}

@@ -8,6 +8,7 @@ import net.fabricmc.loader.impl.util.version.StringVersion;
 import net.lopymine.te.TransparentEntities;
 
 import java.util.*;
+import net.lopymine.te.yacl.custom.state.PreviewStateManager;
 
 @SuppressWarnings("unused")
 public class YACLAPIExtension {
@@ -31,7 +32,7 @@ public class YACLAPIExtension {
 		Version currentYACLVersion = getCurrentYACLVersion();
 
 		if (currentYACLVersion.compareTo(getVersion(STATE_MANAGER_VERSION)) >= 0) {
-			builder.stateManager(instant ? StateManager.createInstant(binding) : StateManager.createSimple(binding));
+			builder.stateManager(instant ? new PreviewStateManager<>(binding) : StateManager.createSimple(binding));
 		} else {
 			builder.binding(binding);
 			builder.instant(instant);

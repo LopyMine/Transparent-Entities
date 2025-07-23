@@ -5,30 +5,31 @@
 	"compatibilityLevel": "JAVA_${java}",
 	"mixins": [],
 	"client": [
+		"BufferBuilderMixin",
+
 		"entity.EntityRenderDispatcherMixin",
 		"fixes.GameRendererMixin",
 		"fixes.SpriteIdentifierMixin",
-		"ModelPartMixin",
 
 		//? if <=1.21.1 {
 		/*"elytra.ElytraFeatureRendererMixin",
 		"armor.ArmorFeatureRendererMixin",
-		"arrow.ProjectileEntityRendererMixin",
 		*///?}
 
 		//? if >=1.21.2 {
 		"armor.EquipmentRendererMixin",
 		//?}
 
-		"item.ItemRendererMixin",
-		"player.LivingEntityRendererMixin",
+		"entity.LivingEntityRendererMixin",
 		"player.PlayerEntityRendererMixin", // good,
-		"entity.EntityRenderDispatcherShadowMixin",
-		"block.BlockModelRendererMixin",
 		"layers.RenderLayerMixin",
 		"entity.WorldRendererMixin",
 		"layers.TexturedRenderLayersMixin",
-		"gui.SocialInteractionsPlayerListEntryMixin"
+		"gui.SocialInteractionsPlayerListEntryMixin",
+		"item.ItemRendererMixin",
+		"particle.ParticleManagerMixin",
+		"shadow.EntityRenderDispatcherShadowMixin",
+		"nickname.EntityRendererNicknameMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

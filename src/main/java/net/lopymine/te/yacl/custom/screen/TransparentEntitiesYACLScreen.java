@@ -15,7 +15,8 @@ public class TransparentEntitiesYACLScreen extends YACLScreen {
 
 	@Override
 	public void finishOrSave() {
-		this.close();
+		super.finishOrSave();
+		super.close();
 	}
 
 	@Override

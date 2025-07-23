@@ -32,6 +32,6 @@ public abstract class YACLScreenMixin extends Screen {
 		if (YACLConfigurationScreen.notOpen(this)) {
 			return original;
 		}
-		return true;
+		return original;
 	}
 }

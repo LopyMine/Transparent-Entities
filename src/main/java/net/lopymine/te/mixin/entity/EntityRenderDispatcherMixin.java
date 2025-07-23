@@ -9,7 +9,7 @@ import net.minecraft.entity.Entity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.*;
 
-import net.lopymine.te.render.TransparencyRenderer;
+import net.lopymine.te.transparency.TransparencyRenderer;
 
 //? if >=1.21.2 {
 import net.minecraft.client.render.entity.state.EntityRenderState;
@@ -33,6 +33,7 @@ public class EntityRenderDispatcherMixin {
 	/*@WrapOperation(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/entity/EntityRenderer;render(Lnet/minecraft/entity/Entity;FFLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V"), method = "render")
 	private void generated(EntityRenderer instance, Entity entity, float yaw, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, Operation<Void> original) {
 		TransparencyRenderer.handleEntityRendering(entity, () -> original.call(instance, entity, yaw, tickDelta, matrices, vertexConsumers, light));
+
 	}
 	*///?}
 
