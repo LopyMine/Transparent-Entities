@@ -10,34 +10,16 @@ import net.lopymine.te.TransparentEntities;
 import java.util.*;
 import net.lopymine.te.yacl.custom.state.PreviewStateManager;
 
-@SuppressWarnings("unused")
+@SuppressWarnings("all")
 public class YACLAPIExtension {
 
-	private static final String STATE_MANAGER_VERSION = "3.6.0";
-
 	public static <A> ListOption.Builder<A> bindingE(ListOption.Builder<A> builder, Binding<List<A>> binding, boolean instant) {
-		Version currentYACLVersion = getCurrentYACLVersion();
-
-		if (currentYACLVersion.compareTo(getVersion(STATE_MANAGER_VERSION)) >= 0) {
-			builder.state(instant ? StateManager.createInstant(binding) : StateManager.createSimple(binding));
-		} else {
-			builder.binding(binding);
-			//builder.instant(instant);
-		}
-
+		builder.state(instant ? new PreviewStateManager<>(binding) : StateManager.createSimple(binding));
 		return builder;
 	}
 
 	public static <A> Option.Builder<A> bindingE(Option.Builder<A> builder, Binding<A> binding, boolean instant) {
-		Version currentYACLVersion = getCurrentYACLVersion();
-
-		if (currentYACLVersion.compareTo(getVersion(STATE_MANAGER_VERSION)) >= 0) {
-			builder.stateManager(instant ? new PreviewStateManager<>(binding) : StateManager.createSimple(binding));
-		} else {
-			builder.binding(binding);
-			builder.instant(instant);
-		}
-
+		builder.stateManager(instant ? new PreviewStateManager<>(binding) : StateManager.createSimple(binding));
 		return builder;
 	}
 

@@ -40,6 +40,7 @@ public class TransparentEntitiesConfig {
 			option("mod_enabled", true, Codec.BOOL, TransparentEntitiesConfig::isModEnabled),
 			option("hide_shadow_enabled", true, Codec.BOOL, TransparentEntitiesConfig::isHideShadowEnabled),
 			option("hide_head_when_wearing_something", false, Codec.BOOL, TransparentEntitiesConfig::isHideHeadWhenWearingSomething),
+			option("show_glint_when_translucent", true, Codec.BOOL, TransparentEntitiesConfig::isShowGlintWhenTranslucent),
 			option("hide_entities", getStandardHideEntitiesSet(), Identifier.CODEC, TransparentEntitiesConfig::getHideEntities),
 			option("favorite_entities", new HashMap<>(), Uuids.CODEC, EntityData.CODEC, TransparentEntitiesConfig::getFavoriteEntities)
 	).apply(instance, TransparentEntitiesConfig::new));
@@ -53,6 +54,7 @@ public class TransparentEntitiesConfig {
 	private boolean modEnabled;
 	private boolean hideShadowEnabled;
 	private boolean hideHeadWhenWearingSomething;
+	private boolean showGlintWhenTranslucent;
 	private HashSet<Identifier> hideEntities;
 	private HashMap<UUID, EntityData> favoriteEntities;
 
@@ -104,8 +106,7 @@ public class TransparentEntitiesConfig {
 
 			TransparencyDistance distance = config.getTransparencyDistance();
 			if (fullHidingDistance != null) {
-				distance.setFullHidingDistanceXZ(fullHidingDistance);
-				distance.setFullHidingDistanceY(fullHidingDistance);
+				distance.setFullHidingDistance(fullHidingDistance);
 			}
 			if (hidingActivationDistance != null) {
 				distance.setHidingActivationDistanceXZ(hidingActivationDistance);

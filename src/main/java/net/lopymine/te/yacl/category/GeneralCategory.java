@@ -43,13 +43,8 @@ public class GeneralCategory {
 						.withController(0.0D, 32.0D, 0.1D)
 						.withDescription(SimpleContent.NONE)
 						.build(),
-				SimpleOption.<Double>startBuilder("full_hiding_distance_xz")
-						.withBinding(defDistance.getFullHidingDistanceXZ(), distance::getFullHidingDistanceXZ, distance::setFullHidingDistanceXZ, true)
-						.withController(0.0D, 32.0D, 0.1D)
-						.withDescription(SimpleContent.NONE)
-						.build(),
-				SimpleOption.<Double>startBuilder("full_hiding_distance_y")
-						.withBinding(defDistance.getFullHidingDistanceY(), distance::getFullHidingDistanceY, distance::setFullHidingDistanceY, true)
+				SimpleOption.<Double>startBuilder("full_hiding_distance")
+						.withBinding(defDistance.getFullHidingDistance(), distance::getFullHidingDistance, distance::setFullHidingDistance, true)
 						.withController(0.0D, 32.0D, 0.1D)
 						.withDescription(SimpleContent.NONE)
 						.build(),
@@ -65,6 +60,11 @@ public class GeneralCategory {
 						.build(),
 				SimpleOption.<Boolean>startBuilder("hide_head_when_wearing_something")
 						.withBinding(defConfig.isHideHeadWhenWearingSomething(), config::isHideHeadWhenWearingSomething, config::setHideHeadWhenWearingSomething, true)
+						.withController()
+						.withDescription(SimpleContent.NONE)
+						.build(),
+				SimpleOption.<Boolean>startBuilder("show_glint_when_translucent")
+						.withBinding(defConfig.isShowGlintWhenTranslucent(), config::isShowGlintWhenTranslucent, config::setShowGlintWhenTranslucent, true)
 						.withController()
 						.withDescription(SimpleContent.NONE)
 						.build()

@@ -13,15 +13,18 @@
 
 
 	"${mod_id}.modmenu.group.hiding.name": "§lСкрытие",
-	"${mod_id}.modmenu.group.hiding.description": "Настройки котролирующие силу скрытия мобов.",
+	"${mod_id}.modmenu.group.hiding.description": "Настройки контролирующие силу скрытия мобов.",
 
-	"${mod_id}.modmenu.option.hiding_activation_distance.name": "Расстояние начала скрытия",
-	"${mod_id}.modmenu.option.hiding_activation_distance.description": "Расстояние, при достижении которого моб начнёт становиться полупрозрачным.\n\nЧем ближе моб будет к вам, тем прозрачнее он будет!",
+	"${mod_id}.modmenu.option.hiding_activation_distance_xz.name": "Расстояние активации скрытия по оси XZ",
+	"${mod_id}.modmenu.option.hiding_activation_distance_xz.description": "Расстояние по осям X и Z, при достижении которого моб начнёт становиться полупрозрачным.\n\nЧем ближе моб будет к вам, тем прозрачнее он будет!",
 
 	"${mod_id}.modmenu.option.full_hiding_distance.name": "Расстояние полного скрытия",
-	"${mod_id}.modmenu.option.full_hiding_distance.description": "Расстояние, при котором моб будет польностью скрыт.",
+	"${mod_id}.modmenu.option.full_hiding_distance.description": "Расстояние по осям, при котором моб будет полностью скрыт.",
 
-	"${mod_id}.modmenu.option.min_hiding_value.name": "Минимальное значение скрытия",
+	"${mod_id}.modmenu.option.hiding_activation_distance_y.name": "Расстояние активации скрытия по оси Y",
+	"${mod_id}.modmenu.option.hiding_activation_distance_y.description": "Расстояние по оси Y, при достижении которого моб начнёт становиться полупрозрачным.\n\nЧем ближе моб будет к вам, тем прозрачнее он будет!",
+
+	"${mod_id}.modmenu.option.min_hiding_value.name": "Минимальная прозрачность",
 	"${mod_id}.modmenu.option.min_hiding_value.description": "Минимальная прозрачность скрытия мобов.",
 
 	"${mod_id}.modmenu.option.hide_shadow_enabled.name": "Включить скрытие тени",
@@ -30,6 +33,8 @@
 	"${mod_id}.modmenu.option.hide_head_when_wearing_something.name": "Включить скрытие головы когда что-то надето",
 	"${mod_id}.modmenu.option.hide_head_when_wearing_something.description": "Если включено, мод будет скрывать головы игроков, если те носят что-нибудь на голове; Если отключено, не будет.",
 
+	"${mod_id}.modmenu.option.show_glint_when_translucent.name": "Показывать эффект блеска при полупрозрачности",
+	"${mod_id}.modmenu.option.show_glint_when_translucent.description": "Если включено, мод будет отображать эффект блеска независимо от прозрачности самого объекта; Если отключено, то мод будет отображать эффект блеска для полностью непрозрачных объектов.\nРаспространяется только на те объекты, которые должны иметь эффект блеска, к примеру когда предмет имеет зачарования.",
 
 	"${mod_id}.modmenu.category.entities.name": "§lСущности",
 

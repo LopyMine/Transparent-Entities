@@ -12,13 +12,13 @@ import org.spongepowered.asm.mixin.injection.At;
 public class BufferBuilderMixin {
 
 	@WrapOperation(at = @At(value = "INVOKE", target = "Lorg/lwjgl/system/MemoryUtil;memPutInt(JI)V", remap = false), method = "putColor")
-	private static void swapColorAlpha1(long ptr, int value, Operation<Void> original, @Local(argsOnly = true) int argb) {
+	private static void swapColorAlphaOne(long ptr, int value, Operation<Void> original, @Local(argsOnly = true) int argb) {
 		int abgr = AbgrUtils.toAbgr(TransparencyManager.getArgbColorFromAnyCapturedThing(argb));
 		original.call(ptr, abgr);
 	}
 
 	@WrapOperation(at = @At(value = "INVOKE", target = "Lorg/lwjgl/system/MemoryUtil;memPutByte(JB)V", ordinal = 3, remap = false), method = "color(IIII)Lnet/minecraft/client/render/VertexConsumer;")
-	private void swapColorAlpha2(long ptr, byte value, Operation<Void> original) {
+	private void swapColorAlphaTwo(long ptr, byte value, Operation<Void> original) {
 		int argb = TransparencyManager.getArgbColorFromAnyCapturedThing(ArgbUtils.getArgb(value, 255, 255, 255));
 		byte alpha = (byte) ArgbUtils.getAlpha(argb);
 		original.call(ptr, alpha);

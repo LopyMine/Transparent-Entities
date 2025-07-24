@@ -1,6 +1,5 @@
 package net.lopymine.te.transparency;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import net.lopymine.te.thing.*;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.entity.*;
@@ -53,12 +52,15 @@ public class TransparencyRenderer {
 
 		ThingCaptures.CURRENT_RENDERING_PARTICLE.set(particle);
 		//? if <=1.21.4 {
-		/*RenderSystem.enableBlend();
+		/*com.mojang.blaze3d.systems.RenderSystem.enableBlend();
+		com.mojang.blaze3d.systems.RenderSystem.blendFuncSeparate(
+				com.mojang.blaze3d.platform.GlStateManager.SrcFactor.SRC_ALPHA,
+				com.mojang.blaze3d.platform.GlStateManager.DstFactor.ONE_MINUS_SRC_ALPHA,
+				com.mojang.blaze3d.platform.GlStateManager.SrcFactor.ONE,
+				com.mojang.blaze3d.platform.GlStateManager.DstFactor.ONE_MINUS_SRC_ALPHA
+		);
 		*///?}
 		renderCall.run();
-		//? if <=1.21.4 {
-		/*RenderSystem.disableBlend();
-		*///?}
 		ThingCaptures.CURRENT_RENDERING_PARTICLE.clear();
 	}
 
@@ -67,8 +69,8 @@ public class TransparencyRenderer {
 		if (!config.isModEnabled()) {
 			return;
 		}
-		ThingMarks.ENTITY_NAME_RENDERING.setEnabled(true);
-		ThingMarks.ENTITY_NAME_RENDERING.setValue(null);
+		ThingMarks.ENTITY_NAME_RENDERING.get().setEnabled(true);
+		ThingMarks.ENTITY_NAME_RENDERING.get().setValue(null);
 		HashSet<Identifier> hideEntities = config.getHideEntities();
 		if (hideEntities.contains(TransparentEntitiesConfig.ENTITY_NAME_ID.id())) {
 			return;
@@ -76,7 +78,7 @@ public class TransparencyRenderer {
 		ThingContainer<Entity> container = ThingCaptures.CURRENT_RENDERING_ENTITY.getContainer();
 		boolean previousContainerValue = container.isEnabled();
 		container.setEnabled(false);
-		ThingMarks.ENTITY_NAME_RENDERING.setValue(previousContainerValue);
+		ThingMarks.ENTITY_NAME_RENDERING.get().setValue(previousContainerValue);
 	}
 
 	public static void handleLabelRenderingTwo() {
@@ -84,8 +86,8 @@ public class TransparencyRenderer {
 		if (!config.isModEnabled()) {
 			return;
 		}
-		ThingMarks.ENTITY_NAME_RENDERING.setEnabled(false);
-		Boolean previousValue = ThingMarks.ENTITY_NAME_RENDERING.getValue();
+		ThingMarks.ENTITY_NAME_RENDERING.get().setEnabled(false);
+		Boolean previousValue = ThingMarks.ENTITY_NAME_RENDERING.get().getValue();
 		if (previousValue == null) {
 			return;
 		}

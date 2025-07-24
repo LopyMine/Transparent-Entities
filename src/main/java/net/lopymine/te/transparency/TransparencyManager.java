@@ -38,12 +38,12 @@ public class TransparencyManager {
 
 		Distance distance = transparencyDistance.getDistance(cameraPos, thingPos);
 
-		if (distance.hidingActivationDistance() <= 0F) {
+		if (distance == null || distance.hidingActivationDistance() <= 0F) {
 			return 255;
 		}
 
-		double a = distance.hidingActivationDistance() - distance.fullHidingDistance();
-		double b = distance.distance() - distance.fullHidingDistance();
+		float a = distance.hidingActivationDistance() - distance.fullHidingDistance();
+		float b = distance.distance() - distance.fullHidingDistance();
 
 		if (a <= 0F || b <= 0F) {
 			return (int) (minHidingValue * 255F);
@@ -92,6 +92,10 @@ public class TransparencyManager {
 
 		TransparencyDistance transparencyDistance = config.getTransparencyDistance();
 		Distance distance = transparencyDistance.getDistance(cameraPos, entityPos);
+
+		if (distance == null || distance.hidingActivationDistance() <= 0F) {
+			return false;
+		}
 
 		return (distance.distance() - distance.hidingActivationDistance()) < 0F;
 	}

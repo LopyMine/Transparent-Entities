@@ -1,2 +1,5 @@
-- Updated to 1.21.6–7
-- Added option for hiding a player's head when they are wearing something
+- Added support for particles
+- Fixed glint rendering for armor and items
+- Added compatibility with other mods and resource packs (Figura, 3D Skins, ETF, EMF, Fresh Animation, etc.)
+- Changed options for managing hiding distances (now separate y and xz). This means now you can make a cylinder-like radius!
+- Fixed YACL buttons, now it works fine

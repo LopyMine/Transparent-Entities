@@ -5,31 +5,48 @@
 	"compatibilityLevel": "JAVA_${java}",
 	"mixins": [],
 	"client": [
-		"BufferBuilderMixin",
-
-		"entity.EntityRenderDispatcherMixin",
-		"fixes.GameRendererMixin",
-		"fixes.SpriteIdentifierMixin",
-
 		//? if <=1.21.1 {
 		/*"elytra.ElytraFeatureRendererMixin",
 		"armor.ArmorFeatureRendererMixin",
 		*///?}
-
 		//? if >=1.21.2 {
 		"armor.EquipmentRendererMixin",
 		//?}
+		"armor.RenderLayerMixin",
+		"armor.TexturedRenderLayersMixin",
 
+		"entity.EntityRenderDispatcherMixin",
 		"entity.LivingEntityRendererMixin",
-		"player.PlayerEntityRendererMixin", // good,
-		"layers.RenderLayerMixin",
 		"entity.WorldRendererMixin",
-		"layers.TexturedRenderLayersMixin",
+
+		"fixes.GameRendererMixin",
+		"fixes.SpriteIdentifierMixin",
+
+		"glint.WorldRendererMixin",
+		"glint.BufferBuilderStorageMixin",
+		"glint.ItemRendererMixin",
+
 		"gui.SocialInteractionsPlayerListEntryMixin",
+
+		//? if >=1.21.6 {
+		/*"head.SkullBlockEntityRendererMixin",
+		*///?}
+
 		"item.ItemRendererMixin",
+
+		"layers.RenderLayerMixin",
+		"layers.TexturedRenderLayersMixin",
+
+		"nickname.EntityRendererMixin",
+
 		"particle.ParticleManagerMixin",
-		"shadow.EntityRenderDispatcherShadowMixin",
-		"nickname.EntityRendererNicknameMixin"
+		"particle.RenderLayerMixin",
+
+		"player.PlayerEntityRendererMixin", // good,
+
+		"shadow.EntityRenderDispatcherMixin",
+
+		"BufferBuilderMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

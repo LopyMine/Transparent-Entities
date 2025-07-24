@@ -1,5 +1,5 @@
 accessWidener v2 named
-# 1.21.6 AW
+# 1.21.8 AW
 
 accessible method net/minecraft/client/render/GameRenderer findCrosshairTarget (Lnet/minecraft/entity/Entity;DDF)Lnet/minecraft/util/hit/HitResult;
 

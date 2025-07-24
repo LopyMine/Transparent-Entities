@@ -32,13 +32,4 @@ public class RenderLayerMixin {
 		cir.setReturnValue(TransparencyLayers.getLayer(texture, cir::getReturnValue));
 	}
 
-	//? if >=1.21.5 {
-	@Inject(at = @At("RETURN"), method = {
-			"getOpaqueParticle"
-	}, cancellable = true)
-	private static void swapParticleRenderLayer(Identifier texture, CallbackInfoReturnable<RenderLayer> cir) {
-		cir.setReturnValue(TransparencyLayers.getLayer(texture, cir::getReturnValue));
-	}
-	//?}
-
 }

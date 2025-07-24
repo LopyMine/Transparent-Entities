@@ -7,7 +7,7 @@ import org.jetbrains.annotations.Nullable;
 @Getter
 public class ThingMarks<T> {
 
-	public static final ThingMarks<Boolean> ENTITY_NAME_RENDERING = new ThingMarks<>();
+	public static final ThreadLocal<ThingMarks<Boolean>> ENTITY_NAME_RENDERING = ThreadLocal.withInitial(ThingMarks::new);
 
 	private boolean enabled;
 	@Nullable

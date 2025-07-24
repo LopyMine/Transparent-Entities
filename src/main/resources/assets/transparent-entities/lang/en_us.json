@@ -17,16 +17,13 @@
 	"${mod_id}.modmenu.group.hiding.description": "Settings that control the power of entities translucent.",
 
 	"${mod_id}.modmenu.option.hiding_activation_distance_xz.name": "Hiding Activation Distance By XZ",
-	"${mod_id}.modmenu.option.hiding_activation_distance_xz.description": "The distance by X and Z at which the entity will start to become translucent.\n\nThe closer entity is to you, the more transparent he will be!",
+	"${mod_id}.modmenu.option.hiding_activation_distance_xz.description": "The distance by X and Z axes at which the entity will start to become translucent.\n\nThe closer entity is to you, the more transparent he will be!",
 
-	"${mod_id}.modmenu.option.full_hiding_distance_xz.name": "Full Hiding Distance By XZ",
-	"${mod_id}.modmenu.option.full_hiding_distance_xz.description": "The distance by X and Z axis at which the entity will be completely translucent.",
+	"${mod_id}.modmenu.option.full_hiding_distance.name": "Full Hiding Distance",
+	"${mod_id}.modmenu.option.full_hiding_distance.description": "The distance at which the entity will be completely translucent.",
 
 	"${mod_id}.modmenu.option.hiding_activation_distance_y.name": "Hiding Activation Distance By Y",
 	"${mod_id}.modmenu.option.hiding_activation_distance_y.description": "The distance by Y axis at which the entity will start to become translucent.\n\nThe closer entity is to you, the more transparent he will be!",
-
-	"${mod_id}.modmenu.option.full_hiding_distance_y.name": "Full Hiding Distance By Y",
-	"${mod_id}.modmenu.option.full_hiding_distance_y.description": "The distance by Y axis at which the entity will be completely translucent.",
 
 	"${mod_id}.modmenu.option.min_hiding_value.name": "Min Hiding Value",
 	"${mod_id}.modmenu.option.min_hiding_value.description": "The minimum transparency value of the entity.",
@@ -36,6 +33,9 @@
 
 	"${mod_id}.modmenu.option.hide_head_when_wearing_something.name": "Hide Head When Wearing Something",
 	"${mod_id}.modmenu.option.hide_head_when_wearing_something.description": "If enabled, mod will hide player's heads if they are wearing something on it; if disabled, won't.",
+
+	"${mod_id}.modmenu.option.show_glint_when_translucent.name": "Show Glint When Translucent",
+	"${mod_id}.modmenu.option.show_glint_when_translucent.description": "If enabled, mod will render the glint effect on things regardless of transparency; if disabled, then mod will render glint effect only when the item is completely opaque.\nApplies only to those things that are supposed to have glint effect, for example when the item has enchantments",
 
 	"${mod_id}.modmenu.category.entities.name": "§lEntities",
 
