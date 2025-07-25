@@ -38,22 +38,26 @@ public class TransparencyManager {
 
 		Distance distance = transparencyDistance.getDistance(cameraPos, thingPos);
 
-		if (distance == null || distance.hidingActivationDistance() <= 0F) {
+		if (distance == null || distance.maxXZ() <= 0F || distance.maxY() <= 0F) {
 			return 255;
 		}
 
-		float a = distance.hidingActivationDistance() - distance.fullHidingDistance();
-		float b = distance.distance() - distance.fullHidingDistance();
+		float combinedBlend = TransparencyManager.getBlendByDistance(distance);
+		float alpha = (float) Math.clamp(minHidingValue + (1F - minHidingValue) * combinedBlend, 0F, 1F);
 
-		if (a <= 0F || b <= 0F) {
-			return (int) (minHidingValue * 255F);
-		}
+		return (int) (alpha * 255F);
+	}
 
-		if (b >= a) {
-			return 255;
-		}
+	private static float getBlendByDistance(Distance distance) {
+		float aXZ = distance.maxXZ() - distance.fullHidingDistance();
+		float bXZ = distance.actualDistanceXZ() - distance.fullHidingDistance();
+		float blendXZ = (aXZ <= 0F || bXZ <= 0F) ? 0F : Math.clamp(bXZ / aXZ, 0F, 1F);
 
-		return (int) (Math.clamp((minHidingValue + ((1F - minHidingValue) * (b / a))), 0F, 1F) * 255F);
+		float aY = distance.maxY() - distance.fullHidingDistance();
+		float bY = distance.actualDistanceY() - distance.fullHidingDistance();
+		float blendY = (aY <= 0F || bY <= 0F) ? 0F : Math.clamp(bY / aY, 0F, 1F);
+
+		return Math.max(blendXZ, blendY);
 	}
 
 	public static int getColorForYourself(int original) {
@@ -79,8 +83,6 @@ public class TransparencyManager {
 		MinecraftClient client = MinecraftClient.getInstance();
 		ClientPlayerEntity player = client.player;
 		ClientWorld world = client.world;
-		Vec3d cameraPos = client.gameRenderer.getCamera().getPos();
-		Vec3d entityPos = entity.getPos();
 
 		if (player == null || world == null) {
 			return false;
@@ -90,15 +92,23 @@ public class TransparencyManager {
 			return ArgbUtils.getAlpha(getColorForYourself(-1)) != 255;
 		}
 
+		Vec3d cameraPos = client.gameRenderer.getCamera().getPos();
+		Vec3d entityPos = entity.getPos();
+
 		TransparencyDistance transparencyDistance = config.getTransparencyDistance();
 		Distance distance = transparencyDistance.getDistance(cameraPos, entityPos);
 
-		if (distance == null || distance.hidingActivationDistance() <= 0F) {
+		if (distance == null) {
 			return false;
 		}
 
-		return (distance.distance() - distance.hidingActivationDistance()) < 0F;
+		// Check if the entity is within either XZ or Y activation distance
+		boolean inXZRange = distance.actualDistanceXZ() <= distance.maxXZ();
+		boolean inYRange = distance.actualDistanceY() <= distance.maxY();
+
+		return inXZRange || inYRange;
 	}
+
 
 	public static List<Entity> sortEntitiesByDistance(List<Entity> entities) {
 		Vec3d cameraPos = MinecraftClient.getInstance().gameRenderer.getCamera().getPos();
