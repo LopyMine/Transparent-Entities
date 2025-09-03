@@ -1,0 +1,69 @@
+{
+	"modmenu.descriptionTranslation.${mod_id}": "Clientseitige Fabric-Mod, die die nächstgelegenen Spieler (und andere Kreaturen) allmählich ausblendet.",
+	"${mod_id}.modmenu.title": "§l${mod_name} Einstellung",
+	"${mod_id}.modmenu.no_config_library_screen.message": "Du musst §6§lYet Another Config Lib [YACL]§f installieren, um den Einstellungsbildschirm von ${mod_name} zu öffnen.\n\n§a§lÖffne die §6§lYACL §a§lModrinth-Seite?",
+
+	"${mod_id}.modmenu.category.general.name": "§lAllgemein",
+
+
+	"${mod_id}.modmenu.group.main.name": "§lHaupt",
+	"${mod_id}.modmenu.group.main.description": "Haupteinstellungen der ${mod_name}-Mod.",
+
+	"${mod_id}.modmenu.option.mod_enabled.name": "Mod aktiviert",
+	"${mod_id}.modmenu.option.mod_enabled.description": "Falls aktiviert, werden nahe Spieler durchsichtig. Falls deaktiviert, bleibt alles sichtbar.",
+
+
+	"${mod_id}.modmenu.group.hiding.name": "§lVerbergen",
+	"${mod_id}.modmenu.group.hiding.description": "Einstellungen zur Steuerung der Transparenz von Spielern.",
+
+	"${mod_id}.modmenu.option.hiding_activation_distance.name": "Verbergen-Aktivierungsdistanz",
+	"${mod_id}.modmenu.option.hiding_activation_distance.description": "Die Entfernung, bei der ein Spieler beginnt, durchsichtig zu werden.\n\nJe näher ein Spieler dir ist, desto transparenter wird er!",
+
+	"${mod_id}.modmenu.option.full_hiding_distance.name": "Volle Verbergungsdistanz",
+	"${mod_id}.modmenu.option.full_hiding_distance.description": "Die Entfernung, bei der ein Spieler vollständig durchsichtig wird.",
+
+	"${mod_id}.modmenu.option.min_hiding_value.name": "Minimaler Transparenz-Wert",
+	"${mod_id}.modmenu.option.min_hiding_value.description": "Der niedrigste Transparenzwert, den ein Spieler haben kann.",
+
+	"${mod_id}.modmenu.option.hide_shadow_enabled.name": "Schatten ausblenden aktiviert",
+	"${mod_id}.modmenu.option.hide_shadow_enabled.description": "Wenn aktiviert, werden die Schatten von Kreaturen ebenfalls durchsichtig; wenn deaktiviert, bleiben sie sichtbar.",
+
+
+	"${mod_id}.modmenu.group.gameplay.name": "§lGameplay",
+	"${mod_id}.modmenu.group.gameplay.description": "Einstellungen, die das Spielgeschehen betreffen.",
+
+	"${mod_id}.modmenu.option.click_through_translucent_entities_enabled.name": "Klicken durch durchsichtige Spieler/Kreaturen ermöglichen",
+	"${mod_id}.modmenu.option.click_through_translucent_entities_enabled.description": "Falls aktiviert, kannst du durch durchsichtige Spieler/Kreaturen klicken, z. B. um eine Truhe zu öffnen. Falls deaktiviert, nicht.",
+
+	"${mod_id}.modmenu.category.entities.name": "§lKreaturen",
+
+	"${mod_id}.modmenu.label.empty": " ",
+	"${mod_id}.modmenu.label.entities.info": "Hier kannst du die Optionen zur Transparenz anderer Kreaturen finden.",
+	"${mod_id}.modmenu.label.entities.info.beta": "§l§6Denke daran! Dieses Feature befindet sich derzeit in der Beta-Phase!",
+
+	"${mod_id}.modmenu.option.hide_entity.name": "%s ausblenden",
+	"${mod_id}.modmenu.option.hide_entity.description": "Wenn aktiviert, wird %s transparent; wenn deaktiviert, bleibt es sichtbar.",
+
+	"${mod_id}.keybinding.name": "${mod_name}",
+	"${mod_id}.keybinding.toggle_mod.name": "Mod umschalten",
+	"${mod_id}.keybinding.toggle_favorite_entity.name": "Favorisierte Kreatur umschalten",
+
+	"${mod_id}.keybinding.status.toggle_mod.true": "§a${mod_name} aktiviert",
+	"${mod_id}.keybinding.status.toggle_mod.false": "§c${mod_name} deaktiviert",
+
+	"${mod_id}.modmenu.formatter.enabled_or_disabled.true": "Aktiviert",
+	"${mod_id}.modmenu.formatter.enabled_or_disabled.false": "Deaktiviert",
+
+	"${mod_id}.command.id": "§5§l[${mod_name}]",
+
+	"${mod_id}.command.argument.entity_data.exception.failed_parsing": "Fehler beim Parsen: %s",
+	"${mod_id}.command.argument.entity_data.exception.unknown_entity": "Unbekannte Kreatur: %s",
+
+	"${mod_id}.command.favorite_entities.add.success": "&6%s&f &awurde&f zur Favoritenliste hinzugefügt und wird nicht mehr versteckt.",
+	"${mod_id}.command.favorite_entities.add.failed": "&6%s&f ist bereits in der Favoritenliste!",
+
+	"${mod_id}.command.favorite_entities.remove.success": "&6%s&f &cwurde&f aus der Favoritenliste entfernt und wird nun versteckt.",
+	"${mod_id}.command.favorite_entities.remove.failed": "Konnte &6%s&f nicht in der Favoritenliste finden!",
+
+	"${mod_id}.gui.favorite_button.tooltip": "Fügt den Spieler zur Favoritenliste hinzu. Favorisierte Spieler und andere Kreaturen werden von der ${mod_name}-Mod nicht versteckt."
+}
