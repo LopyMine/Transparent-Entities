@@ -1,0 +1,72 @@
+{
+	"modmenu.descriptionTranslation.${mod_id}": "${mod_description}",
+
+	"${mod_id}.modmenu.category.general.name": "§lGeneral",
+
+	"${mod_id}.modmenu.group.main.name": "§lMain",
+	"${mod_id}.modmenu.group.main.description": "Main settings of ${mod_name} mod.",
+
+	"${mod_id}.modmenu.option.mod_enabled.name": "Mod Enabled",
+	"${mod_id}.modmenu.option.mod_enabled.description": "If enabled, nearest entities will be translucent; if disabled, won't.",
+
+
+	"${mod_id}.modmenu.group.hiding.name": "§lHiding",
+	"${mod_id}.modmenu.group.hiding.description": "Settings that control the power of entities translucent.",
+
+	"${mod_id}.modmenu.option.pixel_size.name": "Pixel Size",
+	"${mod_id}.modmenu.option.pixel_size.description": "The size of the dithering dots in screen pixels.\n\nThe bigger the value, the chunkier the dithering pattern.",
+
+	"${mod_id}.modmenu.option.far.name": "Far Distance",
+	"${mod_id}.modmenu.option.far.description": "The distance at which the entity starts to become translucent.\n\nThe closer entity is to you, the more transparent it will be!",
+
+	"${mod_id}.modmenu.option.near.name": "Near Distance",
+	"${mod_id}.modmenu.option.near.description": "The distance at which the entity becomes completely translucent.",
+
+	"${mod_id}.modmenu.option.min_value.name": "Min Value",
+	"${mod_id}.modmenu.option.min_value.description": "The minimum visibility of the entity, so it never fully disappears.\n\nThe higher the value, the more visible the closest entities stay (at 1.0 they are never hidden).",
+
+	"${mod_id}.modmenu.option.hide_head_when_wearing_something.name": "Hide Head When Wearing Something",
+	"${mod_id}.modmenu.option.hide_head_when_wearing_something.description": "If enabled, mod will hide player's heads if they are wearing something on it; if disabled, won't.",
+
+	"${mod_id}.modmenu.category.entities.name": "§lEntities",
+
+	"${mod_id}.modmenu.label.empty": " ",
+	"${mod_id}.modmenu.label.entities.info": "Here you can find the options to enable transparency of other entities.",
+	"${mod_id}.modmenu.label.entities.info.beta": "§l§6Remember! This feature currently in beta testing!",
+
+	"${mod_id}.modmenu.option.hide_all.name": "Hide All",
+	"${mod_id}.modmenu.option.hide_all.description": "Will enable hiding for all entities.",
+	"${mod_id}.modmenu.option.hide_peaceful.name": "Hide Peaceful",
+	"${mod_id}.modmenu.option.hide_peaceful.description": "Will enable hiding only for friendly entities.",
+	"${mod_id}.modmenu.option.hide_aggressive.name": "Hide Aggressive",
+	"${mod_id}.modmenu.option.hide_aggressive.description": "Will enable hiding only for aggressive entities.",
+
+	"${mod_id}.modmenu.option.hide_entity.name": "Hide %s",
+	"${mod_id}.modmenu.option.hide_entity.description": "If enabled, %s will be translucent; if disabled, won't.",
+
+	"${mod_id}.modmenu.option.hide_entity.other_players": "Other Players",
+	"${mod_id}.custom_entities.my_player":  "My Player",
+
+	"${mod_id}.keybinding.name": "${mod_name}",
+	"${mod_id}.keybinding.toggle_mod.name": "Toggle Mod",
+	"${mod_id}.keybinding.toggle_favorite_entity.name": "Toggle Favorite Entity",
+
+	"${mod_id}.keybinding.status.toggle_mod.true": "§a${mod_name} Enabled",
+	"${mod_id}.keybinding.status.toggle_mod.false": "§c${mod_name} Disabled",
+
+	"${mod_id}.modmenu.formatter.enabled_or_disabled.true": "Enabled",
+	"${mod_id}.modmenu.formatter.enabled_or_disabled.false": "Disabled",
+
+	"${mod_id}.command.id": "§5§l[${mod_name}]",
+
+	"${mod_id}.command.argument.entity_data.exception.failed_parsing": "Failed Parsing: %s",
+	"${mod_id}.command.argument.entity_data.exception.unknown_entity": "Unknown Entity: %s",
+
+	"${mod_id}.command.favorite_entities.add.success": "&6%s&f &aadded&f to favorite list and will be no longer hidden.",
+	"${mod_id}.command.favorite_entities.add.failed": "&6%s&f already in favorite list!",
+
+	"${mod_id}.command.favorite_entities.remove.success": "&6%s&f &cremoved&f from favorite list and will be hidden.",
+	"${mod_id}.command.favorite_entities.remove.failed": "Failed to find &6%s&f in favorite list!",
+
+	"${mod_id}.gui.favorite_button.tooltip": "Adds the player to the favorite list. Favorite players and other entities will not be hidden by ${mod_name} mod."
+}

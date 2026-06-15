@@ -1,0 +1,17 @@
+{
+	"required": false,
+	"package": "net.lopymine.ed.mixin.iris",
+	"plugin": "net.lopymine.ed.compat.IrisCompatPlugin",
+	"refmap": "${mod_id}.refmap.json",
+	"compatibilityLevel": "JAVA_${java}",
+	"mixins": [],
+	"client": [
+		"ShaderCreatorMixin",
+		"IrisRenderingPipelineMixin",
+		"GlRenderPipelineMixin",
+		"RenderPipelineMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}

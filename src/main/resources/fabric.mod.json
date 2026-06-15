@@ -8,33 +8,32 @@
         "${mod_authors}"
     ],
     "contact": {
-        "homepage": "https://modrinth.com/mod/${mod_id}",
-        "issues": "https://github.com/LopyMine/${mod_id}"
+        "homepage": "https://modrinth.com/mod/${github_mod_name}",
+        "issues": "https://github.com/${github_author}/${github_mod_name}/issues"
     },
     "license": "${mod_license}",
-    "icon": "icon/icon.png",
-    "environment": "*",
+    "icon": "old_icon_2.png",
+    "environment": "${fabric_trick_side}",
     "entrypoints": {
         "main": [
-	        "net.lopymine.te.TransparentEntities"
+	        "net.lopymine.ed.entrypoint.CommonEntrypoint"
         ],
         "client": [
-	        "net.lopymine.te.client.TransparentEntitiesClient"
+	        "net.lopymine.ed.entrypoint.ClientEntrypoint"
         ],
         "modmenu": [
-	        "net.lopymine.te.modmenu.ModMenuIntegration"
+	        "net.lopymine.ed.modmenu.ModMenuIntegration"
         ]
     },
     "depends": {
+	    "mossylib": ">=${mossylib}",
         "fabricloader": ">=${fabric_loader}",
         "minecraft": ">=${minecraft}",
         "java": ">=${java}",
         "${fabric_api_id}": "*"
     },
-    "accessWidener": "aws/${minecraft}.accesswidener",
-    "mixins": [
-        "${mod_id}.mixins.json",
-        "${mod_id}-sodium.mixins.json",
-        "${mod_id}-yacl.mixins.json"
-    ]
+	"accessWidener": "${fabric_trick_accesswidener_id}",
+	"mixins": [
+		"${fabric_trick_mixin_configs}"
+	]
 }

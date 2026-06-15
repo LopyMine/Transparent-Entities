@@ -1,34 +1,41 @@
 plugins {
-	id("net.lopymine.mossy-plugin")
+	id "net.lopymine.mossy-plugin-core" version "$mossy_plugin_version"
+	id "maven-publish"
 }
 
 mossyDependencies {
-	minecraft = stonecutter.current.version.toString()
-	mappings = prop("build.yarn")
+	minecraft = stonecutter.current.project.substring(stonecutter.current.project.indexOf("-") + 1)
 	lombok = prop("base.lombok_version")
+
 	fabricApi = prop("build.fabric_api")
 	fabricLoader = prop("build.fabric_loader")
 
+	forge = prop("build.forge")
+
+	neoForge = prop("build.neoforge")
+	parchment = prop("build.parchment")
+
 	additional {
-
-		//override("modCompileOnly", "sodium")
-
+//		override("mossyCompileOnly", "iris")
+//		override("mossyCompileOnly", "sodium")
 	}
 }
 
-mossyResources {
-	//expandFiles = ["custom", "file", "patterns", "here"]
-}
-
-repositories {
-	maven {
-		name = "Mixin Squared"
-		url = "https://maven.bawnorton.com/releases"
+stonecutter {
+	replacements.string(current.parsed >= "26.1") {
+		replace("net.minecraft.client.gui.GuiGraphics", "net.minecraft.client.gui.GuiGraphicsExtractor")
+		replace("GuiGraphics", "GuiGraphicsExtractor")
+		replace("context.drawString(", "context.text(")
+		replace("context.renderItem(", "context.item(")
+		replace("graphics.drawString(", "graphics.text(")
+		replace("graphics.renderItem(", "graphics.item(")
+		replace("ClickType", "ContainerInput")
+		replace("atlas.location()", "atlas.location()")
 	}
-}
 
-dependencies {
-	include(implementation(annotationProcessor("com.github.bawnorton.mixinsquared:mixinsquared-fabric:${prop("base.mixin_squared")}")))
+	replacements.string(current.parsed >= "1.21.11") {
+		replace("import net.minecraft.Util;", "import net.minecraft.util.Util;")
+	}
 }
 
 String prop(String key) {

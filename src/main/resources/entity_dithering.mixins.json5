@@ -1,0 +1,23 @@
+{
+	"required": true,
+	"package": "net.lopymine.ed.mixin",
+	"refmap": "${mod_id}.refmap.json",
+	"compatibilityLevel": "JAVA_${java}",
+	"mixins": [],
+	"client": [
+		"pipeline.RenderPipelineMixin",
+		"pipeline.RenderPipelineBuilderMixin",
+		"pipeline.RenderPipelineBuilderAccessor",
+		"gui.PlayerEntryMixin",
+		"render.EntityRenderDispatcherMixin",
+		"render.SubmitNodeCollectionMixin",
+		"render.RenderTypeMixin",
+		"render.BlockModelRenderStateMixin",
+		"render.LevelRendererMixin",
+		"render.EntityRenderStateMixin",
+		"render.GlDeviceMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}

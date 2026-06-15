@@ -1,0 +1,72 @@
+{
+	"modmenu.descriptionTranslation.${mod_id}": "Простой Fabric мод, который скрывает ближайших игроков (и других мобов).",
+
+	"${mod_id}.modmenu.category.general.name": "§lОсновное",
+
+	"${mod_id}.modmenu.group.main.name": "§lГлавное",
+	"${mod_id}.modmenu.group.main.description": "Главные настройки мода ${mod_name}.",
+
+	"${mod_id}.modmenu.option.mod_enabled.name": "Включить мод",
+	"${mod_id}.modmenu.option.mod_enabled.description": "Если включён, то ближайшие мобы будут становиться полупрозрачными; Если отключено, не будут.",
+
+
+	"${mod_id}.modmenu.group.hiding.name": "§lСкрытие",
+	"${mod_id}.modmenu.group.hiding.description": "Настройки контролирующие силу скрытия мобов.",
+
+	"${mod_id}.modmenu.option.pixel_size.name": "Размер пикселей",
+	"${mod_id}.modmenu.option.pixel_size.description": "Размер точек дизеринга в пикселях экрана.\n\nЧем больше значение, тем крупнее узор дизеринга.",
+
+	"${mod_id}.modmenu.option.far.name": "Дальнее расстояние",
+	"${mod_id}.modmenu.option.far.description": "Расстояние, при достижении которого моб начнёт становиться полупрозрачным.\n\nЧем ближе моб будет к вам, тем прозрачнее он будет!",
+
+	"${mod_id}.modmenu.option.near.name": "Ближнее расстояние",
+	"${mod_id}.modmenu.option.near.description": "Расстояние, при котором моб становится полностью полупрозрачным.",
+
+	"${mod_id}.modmenu.option.min_value.name": "Минимальное значение",
+	"${mod_id}.modmenu.option.min_value.description": "Минимальная видимость моба, чтобы он никогда не исчезал полностью.\n\nЧем выше значение, тем более видимыми остаются ближайшие мобы (при 1.0 они никогда не скрываются).",
+
+	"${mod_id}.modmenu.option.hide_head_when_wearing_something.name": "Включить скрытие головы когда что-то надето",
+	"${mod_id}.modmenu.option.hide_head_when_wearing_something.description": "Если включено, мод будет скрывать головы игроков, если те носят что-нибудь на голове; Если отключено, не будет.",
+
+	"${mod_id}.modmenu.category.entities.name": "§lСущности",
+
+	"${mod_id}.modmenu.label.empty": " ",
+	"${mod_id}.modmenu.label.entities.info": "Здесь вы можете включить прозрачность для каждой сущности отдельно.",
+	"${mod_id}.modmenu.label.entities.info.beta": "§l§6Помните! Данная функция ещё находится в стадии тестирования!",
+
+	"${mod_id}.modmenu.option.hide_all.name": "Скрыть всех",
+	"${mod_id}.modmenu.option.hide_all.description": "Включит скрывание всем мобам.",
+	"${mod_id}.modmenu.option.hide_peaceful.name": "Скрыть мирных",
+	"${mod_id}.modmenu.option.hide_peaceful.description": "Включит скрывание мирным мобам.",
+	"${mod_id}.modmenu.option.hide_aggressive.name": "Скрыть враждебных",
+	"${mod_id}.modmenu.option.hide_aggressive.description": "Включит скрывание агрессивным мобам.",
+
+	"${mod_id}.modmenu.option.hide_entity.name": "Скрывать %s",
+	"${mod_id}.modmenu.option.hide_entity.description": "Если включено, %s будет становиться полупрозрачным; Если отключено, не будет.",
+
+	"${mod_id}.modmenu.option.hide_entity.other_players": "Другие игроки",
+	"${mod_id}.custom_entities.my_player":  "Мой игрок",
+
+	"${mod_id}.keybinding.name": "${mod_name}",
+	"${mod_id}.keybinding.toggle_mod.name": "Включить/Выключить мод",
+	"${mod_id}.keybinding.toggle_favorite_entity.name": "Добавить/удалить избранную сущность",
+
+	"${mod_id}.keybinding.status.toggle_mod.true": "§a${mod_name} Включён",
+	"${mod_id}.keybinding.status.toggle_mod.false": "§c${mod_name} Выключен",
+
+	"${mod_id}.modmenu.formatter.enabled_or_disabled.true": "Включено",
+	"${mod_id}.modmenu.formatter.enabled_or_disabled.false": "Отключено",
+
+	"${mod_id}.command.id": "§5§l[${mod_name}]",
+
+	"${mod_id}.command.argument.entity_data.exception.failed_parsing": "Неудачный разбор аргумента: %s",
+	"${mod_id}.command.argument.entity_data.exception.unknown_entity": "Неизвестная сущность: %s",
+
+	"${mod_id}.command.favorite_entities.add.success": "&6%s&f теперь в избранном списке и больше &aне будет&f скрываться.",
+	"${mod_id}.command.favorite_entities.add.failed": "&6%s&f уже в избранном списке!",
+
+	"${mod_id}.command.favorite_entities.remove.success": "&6%s&f больше не в избранном списке и теперь &cбудет&f скрываться.",
+	"${mod_id}.command.favorite_entities.remove.failed": "Не удалось найти &6%s&f в избранном списке!",
+
+	"${mod_id}.gui.favorite_button.tooltip": "Добавляет игрока в список избранных сущностей. Избранные игроки и другие сущности не будут скрываться модом ${mod_name}."
+}
